@@ -14,22 +14,24 @@ const projectData = [
   {
     src: "/autoservice.avif",
     alt: "Auto Serviço",
-    title: "Nome do Projeto 1",
-    subtitle: "UI/UX Design",
+    title: "Autosserviço em recuperação de conta",
+    subtitle:
+      "Projeto de autoatendimento para recuperação de senha e troca de e-mail cadastrado.",
     href: "/auto-servico",
   },
   {
     src: "/frete.avif",
-    alt: "Descrição do Projeto 2",
-    title: "Nome do Projeto 2",
-    subtitle: "Branding",
+    alt: "Frete no Carrinho",
+    title: "Transformando a experiência no carrinho de compras.",
+    subtitle: "Como o design pode redefinir a satisfação do cliente.",
     href: "/frete",
   },
   {
     src: "/workngo.avif",
-    alt: "Descrição do Projeto 3",
-    title: "Nome do Projeto 3",
-    subtitle: "Web Design",
+    alt: "Work'n Go",
+    title: "Case work'n go",
+    subtitle:
+      "UI/UX de plataforma para nômades digitais, com navegação simples para facilitar a busca por acomodações, trabalho e eventos em qualquer lugar do mundo.",
     href: "/workn-go",
   },
 ];
