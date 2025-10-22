@@ -6,7 +6,7 @@ import Carousel from "@/components/carousel";
 export default function Home() {
   return (
     <main>
-      <section className="flex items-center justify-center bg-gray-100 dark:bg-gray-900 py-32 px-4">
+      <section className="flex items-center justify-center bg-gray-100 dark:bg-[#1b1b1b] py-32 px-4">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-center gap-12 max-w-4xl">
           {/* Título Principal */}
           <div className="shrink-0">
@@ -19,10 +19,10 @@ export default function Home() {
             />
           </div>
           <div className="text-center md:text-left grow">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-[#2a2a2a] dark:text-white mb-4 leading-tight">
               Olá, eu sou a <span className="text-blue-600">Tatiana Goes</span>.
             </h1>
-            <div className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
+            <div className="text-lg md:text-xl text-[#2a2a2a] dark:text-gray-300 mb-8">
               <p>
                 Product Designer atuando em São Paulo, criando interfaces
                 intuitivas e acessíveis para entregar soluções que trazem

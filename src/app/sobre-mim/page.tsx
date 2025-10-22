@@ -9,11 +9,16 @@ import {
 } from "@/components/ui/carousel";
 
 const catImages = [
-  { src: "/gato1.png", alt: "Gato cinza" },
-  { src: "/gato2.png", alt: "Gato laranja" },
-  { src: "/gato3.png", alt: "Gato siamês" },
-  { src: "/gato4.png", alt: "Gato rajado" },
-  { src: "/gato5.png", alt: "Gato na natureza" },
+  { src: "/gato0.jpg", alt: "Lola" },
+  { src: "/gato1.jpg", alt: "Tigre" },
+  { src: "/gato2.jpg", alt: "Romeu" },
+  { src: "/gato4.jpg", alt: "Little Boy" },
+  { src: "/gato5.jpg", alt: "Luna" },
+  { src: "/gato6.jpg", alt: "Keith" },
+  { src: "/gato7.jpg", alt: "Nina" },
+  { src: "/planta0.jpg", alt: "Hortensia" },
+  { src: "/planta1.jpg", alt: "Orquidea" },
+  { src: "/arte0.jpg", alt: "Tim Burton" },
 ];
 
 export default function PaginaSobreMim() {
@@ -64,16 +69,15 @@ export default function PaginaSobreMim() {
         </div>
       </section>
 
-      {/* [ CORREÇÃO AQUI ] Seção "Inspirações e interesses" */}
+      {/*  Seção "Inspirações e interesses" */}
       <section className="bg-white dark:bg-gray-900 py-24 px-4">
-        {/* [ LINHA FALTANTE ] - O container que alinha tudo */}
         <div className="container mx-auto max-w-6xl">
-          {/* [ LINHAS FALTANTES ] - O Título da Seção */}
+          {/* - O Título da Seção */}
           <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-12">
             Inspirações e interesses
           </h2>
 
-          {/* Carrossel (Seu código já estava correto) */}
+          {/* Carrossel */}
           <Carousel
             opts={{
               align: "start",
@@ -86,7 +90,7 @@ export default function PaginaSobreMim() {
                 <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
                   <div className="p-1">
                     <div className="overflow-hidden rounded-lg shadow-lg">
-                      <div className="aspect-square relative">
+                      <div className="relative aspect-300/400">
                         <Image
                           src={img.src}
                           alt={img.alt}
@@ -103,7 +107,7 @@ export default function PaginaSobreMim() {
             <CarouselNext />
           </Carousel>
 
-          {/* Seção de Texto em Duas Colunas (Seu código já estava correto) */}
+          {/* Seção de Texto em Duas Colunas  */}
           <div className="flex flex-col md:flex-row gap-12 text-lg text-gray-700 dark:text-gray-300">
             {/* Coluna Esquerda */}
             <div className="md:w-1/2">

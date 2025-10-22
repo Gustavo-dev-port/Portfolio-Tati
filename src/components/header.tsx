@@ -12,7 +12,7 @@ export default function Header() {
         <div className="container mx-auto flex justify-between items-center px-4">
           <Link href="/">Tatiana Goes</Link>
           <div className="flex gap-4">
-            <Link href="/sobre-mim">Sobre-Mim</Link>
+            <Link href="/sobre-mim">Sobre-mim</Link>
           </div>
         </div>
       </nav>
