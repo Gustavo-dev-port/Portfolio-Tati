@@ -37,9 +37,9 @@ const projectData = [
 
 export default function ProjectCarousel() {
   return (
-    <section className="w-full bg-white dark:bg-gray-800 py-16">
+    <section className="w-full bg-gray-100 dark:bg-gray-800 py-16">
       <div className="container mx-auto max-w-4xl text-center">
-        <h2 className="text-3xl font-bold text-[#2a2a2a] dark:text-white mb-8">
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
           Meus Projetos
         </h2>
 
@@ -63,11 +63,12 @@ export default function ProjectCarousel() {
                         />
                       </div>
 
+                      {/* - Seção de Texto (Título e Subtítulo) */}
                       <div className="p-4 text-left">
-                        <h3 className="font-bold text-lg text-[#2a2a2a] dark:text-white">
+                        <h3 className="font-bold text-lg text-gray-900 dark:text-white">
                           {project.title}
                         </h3>
-                        <p className="text-sm text-[#2a2a2a] dark:text-gray-400">
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
                           {project.subtitle}
                         </p>
                       </div>
