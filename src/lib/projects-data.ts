@@ -2,7 +2,7 @@
 
 export const projectData = [
   {
-    src: "/autoservice.avif",
+    src: "/auto-servico-capa.avif",
     alt: "Auto Serviço",
     title: "Autosserviço em recuperação de conta",
     subtitle:
