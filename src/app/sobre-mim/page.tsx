@@ -53,11 +53,11 @@ export default function PaginaSobreMim() {
 
           {/* Coluna do Texto */}
           <div className="md:w-2/5 text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-snug">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1b1b1b] dark:text-white mb-6 leading-snug">
               Criando experiências visuais que conectam pessoas, ideias e
               negócio.
             </h2>
-            <p className="text-lg text-gray-700 dark:text-gray-300">
+            <p className="text-lg text-[#1b1b1b] dark:text-gray-300">
               Sou designer pleno com foco em criar soluções visuais que
               transmitam mensagens de forma clara e facilitadora. Valorizo a
               escuta atenta e a empatia como ferramentas essenciais para
@@ -73,7 +73,7 @@ export default function PaginaSobreMim() {
       <section className="bg-white dark:bg-gray-900 py-24 px-4">
         <div className="container mx-auto max-w-6xl">
           {/* - O Título da Seção */}
-          <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white leading-tight mb-12">
+          <h2 className="text-5xl md:text-6xl font-extrabold text-[#1b1b1b] dark:text-white leading-tight mb-12">
             Inspirações e interesses
           </h2>
 
@@ -108,7 +108,7 @@ export default function PaginaSobreMim() {
           </Carousel>
 
           {/* Seção de Texto em Duas Colunas  */}
-          <div className="flex flex-col md:flex-row gap-12 text-lg text-gray-700 dark:text-gray-300">
+          <div className="flex flex-col md:flex-row gap-12 text-lg text-[#1b1b1b] dark:text-gray-300">
             {/* Coluna Esquerda */}
             <div className="md:w-1/2">
               <p>

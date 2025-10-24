@@ -4,8 +4,7 @@ import "./globals.css";
 import Header from "../components/header";
 import Footer from "@/components/Footer";
 
-const geistMono = Source_Sans_3({
-  variable: "--font-Source-Sans-3-mono",
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
   weight: ["400", "600", "700", "800"],
 });
@@ -23,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistMono.variable} ${geistMono.variable} antialiased`}
+        className={`${sourceSans.className} text-[#1b1b1b] dark:text-gray-300 a`}
       >
         <header>
           <Header />

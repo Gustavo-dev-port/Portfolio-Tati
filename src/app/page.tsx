@@ -19,11 +19,11 @@ export default function Home() {
             />
           </div>
           <div className="text-center md:text-left grow">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-[#1b1b1b] dark:text-white mb-4 leading-tight">
               Olá, eu sou a <span className="text-[#2a2a2a]">Tatiana Goes</span>
               .
             </h1>
-            <div className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-8">
+            <div className="text-lg md:text-xl text-[#1b1b1b] dark:text-gray-300 mb-8">
               <p>
                 Product Designer atuando em São Paulo, criando interfaces
                 intuitivas e acessíveis para entregar soluções que trazem
