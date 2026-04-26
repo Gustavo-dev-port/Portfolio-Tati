@@ -15,6 +15,7 @@ export default function Home() {
               alt="Tatiana Goes - Designer de UI/UX"
               width={300}
               height={300}
+              priority
               className="rounded-full shadow-lg object-cover w-72 h-72"
             />
           </div>

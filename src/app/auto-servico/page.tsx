@@ -266,7 +266,7 @@ export default function PaginaAutoServico() {
           }
         }}
       >
-        <DialogContent className="max-w-none w-90vw max-w-1400px overflow-y-auto p-0">
+        <DialogContent className="w-[90vw] max-w-[1400px] overflow-y-auto p-0">
           {modalImage && (
             <>
               <DialogTitle className="sr-only">

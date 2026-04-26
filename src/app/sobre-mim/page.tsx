@@ -78,34 +78,43 @@ export default function PaginaSobreMim() {
           </h2>
 
           {/* Carrossel */}
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full mb-12"
-          >
-            <CarouselContent>
-              {catImages.map((img, index) => (
-                <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
-                  <div className="p-1">
-                    <div className="overflow-hidden rounded-lg shadow-lg">
-                      <div className="relative aspect-300/400">
-                        <Image
-                          src={img.src}
-                          alt={img.alt}
-                          fill
-                          className="object-cover"
-                        />
+          <div className="relative px-0 md:px-10">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full mb-4"
+            >
+              <CarouselContent>
+                {catImages.map((img, index) => (
+                  <CarouselItem key={index} className="basis-4/5 md:basis-1/3 lg:basis-1/4">
+                    <div className="p-1">
+                      <div className="overflow-hidden rounded-lg shadow-lg">
+                        <div className="relative aspect-300/400">
+                          <Image
+                            src={img.src}
+                            alt={img.alt}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-          </Carousel>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+
+              {/* Setas visíveis apenas no desktop */}
+              <CarouselPrevious className="hidden md:flex -left-10" />
+              <CarouselNext className="hidden md:flex -right-10" />
+            </Carousel>
+          </div>
+
+          {/* Indicador de deslize — visível apenas no mobile */}
+          <p className="mb-8 text-xs text-gray-400 dark:text-gray-500 md:hidden tracking-wide text-center">
+            ← deslize para ver mais →
+          </p>
 
           {/* Seção de Texto em Duas Colunas  */}
           <div className="flex flex-col md:flex-row gap-12 text-lg text-[#1b1b1b] dark:text-gray-300">
