@@ -31,13 +31,13 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${sourceSans.variable} font-sans text-[#1b1b1b] dark:text-gray-300`}>
+      <body
+        className={`${sourceSans.variable} font-sans text-[#1b1b1b] dark:text-gray-300`}
+      >
         <header>
           <Header />
         </header>
-        <main className="pt-16">
-          {children}
-        </main>
+        <main className="pt-16">{children}</main>
         <footer>
           <Footer />
         </footer>
