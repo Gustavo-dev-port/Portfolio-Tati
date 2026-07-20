@@ -1,0 +1,293 @@
+From 980c0473bb326063862f3cff3ce265fca5320a37 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 20 Jul 2026 20:26:55 +0000
+Subject: [PATCH] =?UTF-8?q?Corrige=20itens=20de=20prioridade=20alta=20e=20?=
+ =?UTF-8?q?m=C3=A9dia=20da=20revis=C3=A3o=20de=20seguran=C3=A7a?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- Atualiza next para ^15.5.20, corrigindo CVEs de severidade alta
+  (DoS, bypass de middleware/proxy, cache poisoning, XSS via CSP nonce)
+- Adiciona rel="noopener noreferrer" ao link externo do LinkedIn no Footer
+- Corrige currentProjectHref da página Work'n Go (estava referenciando
+  /auto-servico, ocultando o próprio case da navegação entre projetos)
+- Remove classes Bootstrap inválidas (position-fixed, align-items-center)
+  no modal de imagem do case Auto Serviço
+- Adiciona cabeçalhos de segurança HTTP (CSP, X-Frame-Options,
+  X-Content-Type-Options, Referrer-Policy, Permissions-Policy) e
+  desabilita o header X-Powered-By em next.config.ts
+---
+ next.config.ts                | 26 ++++++++++-
+ package-lock.json             | 81 ++++++++++++++++++-----------------
+ package.json                  |  2 +-
+ src/app/auto-servico/page.tsx |  2 +-
+ src/app/workn-go/page.tsx     |  2 +-
+ src/components/Footer.tsx     |  1 +
+ 6 files changed, 70 insertions(+), 44 deletions(-)
+
+diff --git a/next.config.ts b/next.config.ts
+index e9ffa30..ad78fe0 100644
+--- a/next.config.ts
++++ b/next.config.ts
+@@ -1,7 +1,31 @@
+ import type { NextConfig } from "next";
+ 
++const securityHeaders = [
++  { key: "X-Frame-Options", value: "DENY" },
++  { key: "X-Content-Type-Options", value: "nosniff" },
++  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
++  {
++    key: "Permissions-Policy",
++    value: "camera=(), microphone=(), geolocation=()",
++  },
++  {
++    key: "Content-Security-Policy",
++    // 'unsafe-inline' em script-src é necessário pelo script anti-flash de tema em layout.tsx
++    value:
++      "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-ancestors 'none';",
++  },
++];
++
+ const nextConfig: NextConfig = {
+-  /* config options here */
++  poweredByHeader: false,
++  async headers() {
++    return [
++      {
++        source: "/:path*",
++        headers: securityHeaders,
++      },
++    ];
++  },
+ };
+ 
+ export default nextConfig;
+diff --git a/package-lock.json b/package-lock.json
+index d850172..4355a29 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -7,6 +7,7 @@
+     "": {
+       "name": "port-tati",
+       "version": "0.1.0",
++      "license": "ISC",
+       "dependencies": {
+         "@radix-ui/react-dialog": "^1.1.15",
+         "@radix-ui/react-slot": "^1.2.3",
+@@ -14,7 +15,7 @@
+         "clsx": "^2.1.1",
+         "embla-carousel-react": "^8.6.0",
+         "lucide-react": "^0.546.0",
+-        "next": "15.5.15",
++        "next": "^15.5.20",
+         "react": "19.1.0",
+         "react-dom": "19.1.0",
+         "tailwind-merge": "^3.3.1"
+@@ -531,15 +532,15 @@
+       }
+     },
+     "node_modules/@next/env": {
+-      "version": "15.5.15",
+-      "resolved": "https://registry.npmjs.org/@next/env/-/env-15.5.15.tgz",
+-      "integrity": "sha512-vcmyu5/MyFzN7CdqRHO3uHO44p/QPCZkuTUXroeUmhNP8bL5PHFEhik22JUazt+CDDoD6EpBYRCaS2pISL+/hg==",
++      "version": "15.5.20",
++      "resolved": "https://registry.npmjs.org/@next/env/-/env-15.5.20.tgz",
++      "integrity": "sha512-dXh51Wvddf8daEyBXryZZEe1FdVxEWx9lgaTseLZUtC1XP/W8Wri+Z+VPOElHlByk23CyqHdc2oVByX7wsTWsw==",
+       "license": "MIT"
+     },
+     "node_modules/@next/swc-darwin-arm64": {
+-      "version": "15.5.15",
+-      "resolved": "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-15.5.15.tgz",
+-      "integrity": "sha512-6PvFO2Tzt10GFK2Ro9tAVEtacMqRmTarYMFKAnV2vYMdwWc73xzmDQyAV7SwEdMhzmiRoo7+m88DuiXlJlGeaw==",
++      "version": "15.5.20",
++      "resolved": "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-15.5.20.tgz",
++      "integrity": "sha512-in0yXG7/pRBVjWeEl7f7ZZETpletSMFKXVS4GJgHENTPVrJFNJKPrYewa9rpZcvdjwFece5fZP0CK34G4PxowA==",
+       "cpu": [
+         "arm64"
+       ],
+@@ -553,9 +554,9 @@
+       }
+     },
+     "node_modules/@next/swc-darwin-x64": {
+-      "version": "15.5.15",
+-      "resolved": "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-15.5.15.tgz",
+-      "integrity": "sha512-G+YNV+z6FDZTp/+IdGyIMFqalBTaQSnvAA+X/hrt+eaTRFSznRMz9K7rTmzvM6tDmKegNtyzgufZW0HwVzEqaQ==",
++      "version": "15.5.20",
++      "resolved": "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-15.5.20.tgz",
++      "integrity": "sha512-0hsFshdPnTzGJdDTHeHJ+XPUShOpnyp9pUFDwDhqctsA0Cd8NcIVGRPtptYhgYY9DjkKgCDRkXxmgRc+CgT5Wg==",
+       "cpu": [
+         "x64"
+       ],
+@@ -569,9 +570,9 @@
+       }
+     },
+     "node_modules/@next/swc-linux-arm64-gnu": {
+-      "version": "15.5.15",
+-      "resolved": "https://registry.npmjs.org/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-15.5.15.tgz",
+-      "integrity": "sha512-eVkrMcVIBqGfXB+QUC7jjZ94Z6uX/dNStbQFabewAnk13Uy18Igd1YZ/GtPRzdhtm7QwC0e6o7zOQecul4iC1w==",
++      "version": "15.5.20",
++      "resolved": "https://registry.npmjs.org/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-15.5.20.tgz",
++      "integrity": "sha512-DMvkoBtAABOzE6pMZRW/xNm7sKqql3wzzzZJ1R/d/rp4BCxv6LykouD3tHjGY8WdQqGpZs11t+R9AtjPxvvljw==",
+       "cpu": [
+         "arm64"
+       ],
+@@ -585,9 +586,9 @@
+       }
+     },
+     "node_modules/@next/swc-linux-arm64-musl": {
+-      "version": "15.5.15",
+-      "resolved": "https://registry.npmjs.org/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-15.5.15.tgz",
+-      "integrity": "sha512-RwSHKMQ7InLy5GfkY2/n5PcFycKA08qI1VST78n09nN36nUPqCvGSMiLXlfUmzmpQpF6XeBYP2KRWHi0UW3uNg==",
++      "version": "15.5.20",
++      "resolved": "https://registry.npmjs.org/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-15.5.20.tgz",
++      "integrity": "sha512-RQmDfeYBtXV2FSId7dfA1hE6M/T6+g7wdbYnFQ47tw/gUBwV+CccLVejNmCGa9yLDitk83foeg8hl/3DjfYQ5g==",
+       "cpu": [
+         "arm64"
+       ],
+@@ -601,9 +602,9 @@
+       }
+     },
+     "node_modules/@next/swc-linux-x64-gnu": {
+-      "version": "15.5.15",
+-      "resolved": "https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-15.5.15.tgz",
+-      "integrity": "sha512-nplqvY86LakS+eeiuWsNWvfmK8pFcOEW7ZtVRt4QH70lL+0x6LG/m1OpJ/tvrbwjmR8HH9/fH2jzW1GlL03TIg==",
++      "version": "15.5.20",
++      "resolved": "https://registry.npmjs.org/@next/swc-linux-x64-gnu/-/swc-linux-x64-gnu-15.5.20.tgz",
++      "integrity": "sha512-DkWLEdKajJwdGt27M3i1VEO2kelTvZrK6Pcb7JvW2BY+nofWm7FBsBNDj7g7Pr1NuQ5PLJvqEqYa20GTsBDnKQ==",
+       "cpu": [
+         "x64"
+       ],
+@@ -617,9 +618,9 @@
+       }
+     },
+     "node_modules/@next/swc-linux-x64-musl": {
+-      "version": "15.5.15",
+-      "resolved": "https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-15.5.15.tgz",
+-      "integrity": "sha512-eAgl9NKQ84/sww0v81DQINl/vL2IBxD7sMybd0cWRw6wqgouVI53brVRBrggqBRP/NWeIAE1dm5cbKYoiMlqDQ==",
++      "version": "15.5.20",
++      "resolved": "https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-15.5.20.tgz",
++      "integrity": "sha512-rAO5b7pKHvX+ExdmJskusDXTNbiNZfptifIPZItbUx+AOXxxTydVBsPt7Oz84DRd5mY8e0DcE8kvLj3AIfjE6w==",
+       "cpu": [
+         "x64"
+       ],
+@@ -633,9 +634,9 @@
+       }
+     },
+     "node_modules/@next/swc-win32-arm64-msvc": {
+-      "version": "15.5.15",
+-      "resolved": "https://registry.npmjs.org/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-15.5.15.tgz",
+-      "integrity": "sha512-GJVZC86lzSquh0MtvZT+L7G8+jMnJcldloOjA8Kf3wXvBrvb6OGe2MzPuALxFshSm/IpwUtD2mIoof39ymf52A==",
++      "version": "15.5.20",
++      "resolved": "https://registry.npmjs.org/@next/swc-win32-arm64-msvc/-/swc-win32-arm64-msvc-15.5.20.tgz",
++      "integrity": "sha512-Hp3zFsN8N8Kj9+vY6L4vnZ9EtA9eXyATu0q4EfGbZTiocgPUNSfz8NWhym6xvaOmHpJ8EuoypuU1WejCPsTFtg==",
+       "cpu": [
+         "arm64"
+       ],
+@@ -649,9 +650,9 @@
+       }
+     },
+     "node_modules/@next/swc-win32-x64-msvc": {
+-      "version": "15.5.15",
+-      "resolved": "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-15.5.15.tgz",
+-      "integrity": "sha512-nFucjVdwlFqxh/JG3hWSJ4p8+YJV7Ii8aPDuBQULB6DzUF4UNZETXLfEUk+oI2zEznWWULPt7MeuTE6xtK1HSA==",
++      "version": "15.5.20",
++      "resolved": "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-15.5.20.tgz",
++      "integrity": "sha512-T/L7CXpR1M0wij/xbF3rT1+7KvSkfOLr7C+ToHHWZTG2eKmb52C5WvsyGCBNtkVvDEUESWkRUbbqSH4rSbOCYQ==",
+       "cpu": [
+         "x64"
+       ],
+@@ -1754,12 +1755,12 @@
+       }
+     },
+     "node_modules/next": {
+-      "version": "15.5.15",
+-      "resolved": "https://registry.npmjs.org/next/-/next-15.5.15.tgz",
+-      "integrity": "sha512-VSqCrJwtLVGwAVE0Sb/yikrQfkwkZW9p+lL/J4+xe+G3ZA+QnWPqgcfH1tDUEuk9y+pthzzVFp4L/U8JerMfMQ==",
++      "version": "15.5.20",
++      "resolved": "https://registry.npmjs.org/next/-/next-15.5.20.tgz",
++      "integrity": "sha512-cvyS3/geydan1xLtE3FA8VCgdoQ/Gg/dlOldFkFCbB5VcVYJV7090hQLBnvTW2PwT76Z/dHdzDZCsVhZpoOlUA==",
+       "license": "MIT",
+       "dependencies": {
+-        "@next/env": "15.5.15",
++        "@next/env": "15.5.20",
+         "@swc/helpers": "0.5.15",
+         "caniuse-lite": "^1.0.30001579",
+         "postcss": "8.4.31",
+@@ -1772,14 +1773,14 @@
+         "node": "^18.18.0 || ^19.8.0 || >= 20.0.0"
+       },
+       "optionalDependencies": {
+-        "@next/swc-darwin-arm64": "15.5.15",
+-        "@next/swc-darwin-x64": "15.5.15",
+-        "@next/swc-linux-arm64-gnu": "15.5.15",
+-        "@next/swc-linux-arm64-musl": "15.5.15",
+-        "@next/swc-linux-x64-gnu": "15.5.15",
+-        "@next/swc-linux-x64-musl": "15.5.15",
+-        "@next/swc-win32-arm64-msvc": "15.5.15",
+-        "@next/swc-win32-x64-msvc": "15.5.15",
++        "@next/swc-darwin-arm64": "15.5.20",
++        "@next/swc-darwin-x64": "15.5.20",
++        "@next/swc-linux-arm64-gnu": "15.5.20",
++        "@next/swc-linux-arm64-musl": "15.5.20",
++        "@next/swc-linux-x64-gnu": "15.5.20",
++        "@next/swc-linux-x64-musl": "15.5.20",
++        "@next/swc-win32-arm64-msvc": "15.5.20",
++        "@next/swc-win32-x64-msvc": "15.5.20",
+         "sharp": "^0.34.3"
+       },
+       "peerDependencies": {
+diff --git a/package.json b/package.json
+index 89c0623..43cc846 100644
+--- a/package.json
++++ b/package.json
+@@ -14,7 +14,7 @@
+     "clsx": "^2.1.1",
+     "embla-carousel-react": "^8.6.0",
+     "lucide-react": "^0.546.0",
+-    "next": "15.5.15",
++    "next": "^15.5.20",
+     "react": "19.1.0",
+     "react-dom": "19.1.0",
+     "tailwind-merge": "^3.3.1"
+diff --git a/src/app/auto-servico/page.tsx b/src/app/auto-servico/page.tsx
+index d4fa836..66ec66b 100644
+--- a/src/app/auto-servico/page.tsx
++++ b/src/app/auto-servico/page.tsx
+@@ -278,7 +278,7 @@ export default function PaginaAutoServico() {
+                 alt="Imagem ampliada do projeto"
+                 width={1980}
+                 height={1080}
+-                className="rounded-lg left-0 top-0 right-0 bottom-0 position-fixed flex align-items-center"
++                className="rounded-lg"
+               />
+             </>
+           )}
+diff --git a/src/app/workn-go/page.tsx b/src/app/workn-go/page.tsx
+index 88576dd..1dcc80d 100644
+--- a/src/app/workn-go/page.tsx
++++ b/src/app/workn-go/page.tsx
+@@ -280,7 +280,7 @@ export default function PaginaWorknGo() {
+         </div>
+       </section>
+       {/* Navegação entre Projetos */}
+-      <ProjectNavigation currentProjectHref="/auto-servico" />
++      <ProjectNavigation currentProjectHref="/workn-go" />
+ 
+       {/* Modal para Imagem Ampliada */}
+       <Dialog
+diff --git a/src/components/Footer.tsx b/src/components/Footer.tsx
+index db72bdd..9ad7d7b 100644
+--- a/src/components/Footer.tsx
++++ b/src/components/Footer.tsx
+@@ -14,6 +14,7 @@ export default function Footer() {
+           <Link
+             href="https://www.linkedin.com/in/tati-goes"
+             target="_blank"
++            rel="noopener noreferrer"
+             className="text-gray-400 hover:text-white"
+           >
+             <Linkedin className="w-5 h-5 inline-block" />
+-- 
+2.43.0
+
