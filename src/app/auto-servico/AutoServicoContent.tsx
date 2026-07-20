@@ -27,12 +27,12 @@ export default function AutoServicoContent() {
 
       {/* Imagem de Capa do Projeto */}
       <section className="container mx-auto max-w-6xl px-4 -mt-8">
-        <div className="overflow-hidden rounded-lg shadow-2xl aspect-21/9">
+        <div className="overflow-hidden rounded-lg shadow-2xl aspect-video">
           <Image
-            src="/auto-servico-capa.avif"
+            src="/auto-servico/capa.avif"
             alt="Capa do projeto Autosserviço"
             width={1200}
-            height={675} // Proporção 21:9
+            height={675} // Proporção 16:9
             sizes="(max-width: 1152px) 100vw, 1152px"
             priority
             className="w-full h-full object-cover object-[50%_62%]"
@@ -89,9 +89,9 @@ export default function AutoServicoContent() {
           {/* Imagens (Contexto Research) */}
           <div className="mt-8 space-y-8">
             <ClickableImage
-              src="/auto-servico-contexto.avif"
+              src="/auto-servico/contexto.avif"
               alt="Contexto"
-              onClick={() => openModal("/auto-servico-contexto.avif")}
+              onClick={() => openModal("/auto-servico/contexto.avif")}
             />
           </div>
         </div>
@@ -111,14 +111,14 @@ export default function AutoServicoContent() {
           </div>
           <div className="mt-8 space-y-8">
             <ClickableImage
-              src="/auto-servico-research1.avif"
+              src="/auto-servico/research1.avif"
               alt="Desk Research"
-              onClick={() => openModal("/auto-servico-research1.avif")}
+              onClick={() => openModal("/auto-servico/research1.avif")}
             />
             <ClickableImage
-              src="/auto-servico-research2.avif"
+              src="/auto-servico/research2.avif"
               alt="Desk Research"
-              onClick={() => openModal("/auto-servico-research2.avif")}
+              onClick={() => openModal("/auto-servico/research2.avif")}
             />
           </div>
           <div className="prose prose-2xl dark:prose-invert max-w-none mt-8">
@@ -152,9 +152,9 @@ export default function AutoServicoContent() {
           </div>
           <div className="mt-12 space-y-8">
             <ClickableImage
-              src="/auto-servico-fluxo.avif"
+              src="/auto-servico/fluxo.avif"
               alt="Solucao"
-              onClick={() => openModal("/auto-servico-fluxo.avif")}
+              onClick={() => openModal("/auto-servico/fluxo.avif")}
             />
           </div>
           <div className="prose prose-2xl dark:prose-invert max-w-none mt-8">
@@ -180,14 +180,14 @@ export default function AutoServicoContent() {
           </div>
           <div className="mt-8">
             <ClickableImage
-              src="/auto-servico-prototipo1.avif"
+              src="/auto-servico/prototipo1.avif"
               alt="Solucao"
-              onClick={() => openModal("/auto-servico-prototipo1.avif")}
+              onClick={() => openModal("/auto-servico/prototipo1.avif")}
             />
             <ClickableImage
-              src="/auto-servico-prototipo2.avif"
+              src="/auto-servico/prototipo2.avif"
               alt="Solucao"
-              onClick={() => openModal("/auto-servico-prototipo2.avif")}
+              onClick={() => openModal("/auto-servico/prototipo2.avif")}
             />
           </div>
         </div>

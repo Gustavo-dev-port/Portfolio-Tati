@@ -16,7 +16,7 @@ export function ProjectImageDialog({
 }: ProjectImageDialogProps) {
   return (
     <Dialog open={!!modalImage} onOpenChange={(isOpen) => !isOpen && onClose()}>
-      <DialogContent className="w-[90vw] max-w-[1400px] overflow-y-auto p-0">
+      <DialogContent className="w-[95vw] max-w-[95vw] sm:max-w-[90vw] lg:max-w-[1600px] max-h-[90vh] overflow-y-auto p-0">
         {modalImage && (
           <>
             <DialogTitle className="sr-only">
@@ -28,8 +28,8 @@ export function ProjectImageDialog({
               alt="Imagem ampliada do projeto"
               width={1920}
               height={1080}
-              sizes="90vw"
-              className="w-full h-auto object-contain rounded-lg"
+              sizes="95vw"
+              className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
             />
           </>
         )}

@@ -16,16 +16,16 @@ export const metadata: Metadata = {
 };
 
 const catImages = [
-  { src: "/gato0.jpg", alt: "Lola" },
-  { src: "/gato1.jpg", alt: "Tigre" },
-  { src: "/gato2.jpg", alt: "Romeu" },
-  { src: "/gato4.jpg", alt: "Little Boy" },
-  { src: "/gato5.jpg", alt: "Luna" },
-  { src: "/gato6.jpg", alt: "Keith" },
-  { src: "/gato7.jpg", alt: "Nina" },
-  { src: "/planta0.jpg", alt: "Hortensia" },
-  { src: "/planta1.jpg", alt: "Orquidea" },
-  { src: "/arte0.jpg", alt: "Tim Burton" },
+  { src: "/sobre-mim/gato0.jpg", alt: "Lola" },
+  { src: "/sobre-mim/gato1.jpg", alt: "Tigre" },
+  { src: "/sobre-mim/gato2.jpg", alt: "Romeu" },
+  { src: "/sobre-mim/gato4.jpg", alt: "Little Boy" },
+  { src: "/sobre-mim/gato5.jpg", alt: "Luna" },
+  { src: "/sobre-mim/gato6.jpg", alt: "Keith" },
+  { src: "/sobre-mim/gato7.jpg", alt: "Nina" },
+  { src: "/sobre-mim/planta0.jpg", alt: "Hortensia" },
+  { src: "/sobre-mim/planta1.jpg", alt: "Orquidea" },
+  { src: "/sobre-mim/arte0.jpg", alt: "Tim Burton" },
 ];
 
 export default function PaginaSobreMim() {
@@ -49,7 +49,7 @@ export default function PaginaSobreMim() {
               {" "}
               {/* Adiciona bordas arredondadas e sombra */}
               <Image
-                src="/tati-sobre-mim.avif" // Ótimo, você já atualizou!
+                src="/sobre-mim/foto-principal.avif"
                 alt="Tatiana Goes - Designer"
                 width={800}
                 height={533}

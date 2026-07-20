@@ -26,12 +26,12 @@ export default function FreteContent() {
 
       {/* Imagem de Capa do Projeto */}
       <section className="container mx-auto max-w-6xl px-4 -mt-8">
-        <div className="overflow-hidden rounded-lg shadow-2xl aspect-21/9">
+        <div className="overflow-hidden rounded-lg shadow-2xl aspect-video">
           <Image
-            src="/frete.avif"
+            src="/frete/capa.avif"
             alt="Capa do Projeto Frete no Carrinho"
             width={1200}
-            height={675} // Proporção 21:9
+            height={675} // Proporção 16:9
             sizes="(max-width: 1152px) 100vw, 1152px"
             priority
             className="w-full h-full object-cover object-[50%_62%]"
@@ -61,9 +61,9 @@ export default function FreteContent() {
           </div>
           <div className="mt-8 space-y-8">
             <ClickableImage
-              src="/frete-contexto.avif"
+              src="/frete/contexto.avif"
               alt="Contexto"
-              onClick={() => openModal("/frete-contexto.avif")}
+              onClick={() => openModal("/frete/contexto.avif")}
             />
           </div>
         </div>
@@ -86,9 +86,9 @@ export default function FreteContent() {
             </p>
 
             <ClickableImage
-              src="/frete-solucao.avif"
+              src="/frete/solucao.avif"
               alt="Solucao"
-              onClick={() => openModal("/frete-solucao.avif")}
+              onClick={() => openModal("/frete/solucao.avif")}
             />
 
             <p className="text-xl">
@@ -124,9 +124,9 @@ export default function FreteContent() {
               a consistência da experiência em diferentes contextos de uso.
             </p>
             <ClickableImage
-              src="/frete-solucao2.avif"
+              src="/frete/solucao2.avif"
               alt="Solucao"
-              onClick={() => openModal("/frete-solucao2.avif")}
+              onClick={() => openModal("/frete/solucao2.avif")}
             />
             <p className="text-xl">
               Confirmamos nossa hipótese de que o usuário acredita ser
@@ -134,9 +134,9 @@ export default function FreteContent() {
               finalizar sua compra.
             </p>
             <ClickableImage
-              src="/frete-solucao3.avif"
+              src="/frete/solucao3.avif"
               alt="Solucao"
-              onClick={() => openModal("/frete-solucao3.avif")}
+              onClick={() => openModal("/frete/solucao3.avif")}
             />
             <p className="text-xl">
               Para medir a encontrabilidade para calcular o frete, solicitamos
@@ -146,58 +146,58 @@ export default function FreteContent() {
               adequada.
             </p>
             <ClickableImage
-              src="/frete-solucao4.avif"
+              src="/frete/solucao4.avif"
               alt="Solucao"
-              onClick={() => openModal("/frete-solucao4.avif")}
+              onClick={() => openModal("/frete/solucao4.avif")}
             />
             <ClickableImage
-              src="/frete-solucao5.avif"
+              src="/frete/solucao5.avif"
               alt="Solucao"
-              onClick={() => openModal("/frete-solucao5.avif")}
+              onClick={() => openModal("/frete/solucao5.avif")}
             />
             <p className="text-xl">
               Com intuito de entender qual das opções o usuario tem a perceção
               mais fácil do frete, perguntamos qual das versões seria ideal.
             </p>
             <ClickableImage
-              src="/frete-solucao6.avif"
+              src="/frete/solucao6.avif"
               alt="Solucao"
-              onClick={() => openModal("/frete-solucao6.avif")}
+              onClick={() => openModal("/frete/solucao6.avif")}
             />
 
             <ClickableImage
-              src="/frete-solucao7.avif"
+              src="/frete/solucao7.avif"
               alt="Solucao"
-              onClick={() => openModal("/frete-solucao7.avif")}
+              onClick={() => openModal("/frete/solucao7.avif")}
             />
 
             <ClickableImage
-              src="/frete-solucao8.avif"
+              src="/frete/solucao8.avif"
               alt="Solucao"
-              onClick={() => openModal("/frete-solucao8.avif")}
+              onClick={() => openModal("/frete/solucao8.avif")}
             />
             <ClickableImage
-              src="/frete-prototipo1.avif"
+              src="/frete/prototipo1.avif"
               alt="Solucao"
-              onClick={() => openModal("/frete-prototipo1.avif")}
+              onClick={() => openModal("/frete/prototipo1.avif")}
             />
             <ClickableImage
-              src="/frete-prototipo2.avif"
+              src="/frete/prototipo2.avif"
               alt="Solucao"
-              onClick={() => openModal("/frete-prototipo2.avif")}
+              onClick={() => openModal("/frete/prototipo2.avif")}
             />
             <ClickableImage
-              src="/frete-prototipo3.avif"
+              src="/frete/prototipo3.avif"
               alt="Solucao"
-              onClick={() => openModal("/frete-prototipo3.avif")}
+              onClick={() => openModal("/frete/prototipo3.avif")}
             />
             <p className="text-xl">
               É possível visualizar os protótipos{" "}
-              <a href="https://www.figma.com/proto/pcjCM6LHdXXVxEz00AnUWy/frete-no-carrinho?kind=proto&node-id=1-4438&page-id=0%3A1&scaling=scale-down&t=ZnMhkiKndUvFeVPF-1&type=design">
+              <a href="https://www.figma.com/proto/pcjCM6LHdXXVxEz00AnUWy/frete/no-carrinho?kind=proto&node-id=1-4438&page-id=0%3A1&scaling=scale-down&t=ZnMhkiKndUvFeVPF-1&type=design">
                 <u>mobile</u>
               </a>{" "}
               e{" "}
-              <a href="https://www.figma.com/proto/pcjCM6LHdXXVxEz00AnUWy/frete-no-carrinho?kind=proto&node-id=1-26269&page-id=1%3A13535&scaling=min-zoom&t=WExuVSkKm4THqgHe-1&type=design">
+              <a href="https://www.figma.com/proto/pcjCM6LHdXXVxEz00AnUWy/frete/no-carrinho?kind=proto&node-id=1-26269&page-id=1%3A13535&scaling=min-zoom&t=WExuVSkKm4THqgHe-1&type=design">
                 <u>desktop</u>
               </a>
               .

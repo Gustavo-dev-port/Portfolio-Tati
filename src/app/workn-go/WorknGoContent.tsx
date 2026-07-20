@@ -28,12 +28,12 @@ export default function WorknGoContent() {
 
       {/* Imagem de Capa do Projeto */}
       <section className="container mx-auto max-w-6xl px-4 -mt-8">
-        <div className="overflow-hidden rounded-lg shadow-2xl aspect-21/9">
+        <div className="overflow-hidden rounded-lg shadow-2xl aspect-video">
           <Image
-            src="/workngo.avif"
+            src="/workn-go/capa.avif"
             alt="Capa do Projeto Work'n Go"
             width={1200}
-            height={675} // Proporção 21:9
+            height={675} // Proporção 16:9
             sizes="(max-width: 1152px) 100vw, 1152px"
             priority
             className="w-full h-full object-cover object-[50%_62%]"
@@ -141,9 +141,9 @@ export default function WorknGoContent() {
               em evidências reais dos usuários.
             </p>
             <ClickableImage
-              src="/workngo-solucao1.avif"
+              src="/workn-go/solucao1.avif"
               alt="Solucao"
-              onClick={() => openModal("/workngo-solucao1.avif")}
+              onClick={() => openModal("/workn-go/solucao1.avif")}
             />
             <p className="text-xl mt-4">
               Foram observados os seguintes pontos:
@@ -186,18 +186,18 @@ export default function WorknGoContent() {
               para protagonizar o uso do produto:
             </p>
             <ClickableImage
-              src="/workngo-solucao2.avif"
+              src="/workn-go/solucao2.avif"
               alt="Solucao"
-              onClick={() => openModal("/workngo-solucao2.avif")}
+              onClick={() => openModal("/workn-go/solucao2.avif")}
             />
             <p className="text-xl">
               Foi desenvolvido um mapa de empatia para aprofundar o conhecimento
               do perfil de usuário ideal
             </p>
             <ClickableImage
-              src="/workngo-solucao3.webp"
+              src="/workn-go/solucao3.webp"
               alt="Solucao"
-              onClick={() => openModal("/workngo-solucao3.webp")}
+              onClick={() => openModal("/workn-go/solucao3.webp")}
             />
           </div>
         </div>
@@ -240,28 +240,28 @@ export default function WorknGoContent() {
               </li>
             </ul>
             <ClickableImage
-              src="/workngo-site-map1.avif"
+              src="/workn-go/site-map1.avif"
               alt="Site Map 1"
-              onClick={() => openModal("/workngo-site-map1.avif")}
+              onClick={() => openModal("/workn-go/site-map1.avif")}
             />
             <p className="text-xl">
               Foi criado o wireframe para estudar a melhor usabilidade e idear o
               fluxo de navegação.
             </p>
             <ClickableImage
-              src="/workngo-site-map2.avif"
+              src="/workn-go/site-map2.avif"
               alt="Site Map 2"
-              onClick={() => openModal("/workngo-site-map2.avif")}
+              onClick={() => openModal("/workn-go/site-map2.avif")}
             />
             <ClickableImage
-              src="/workngo-site-map3.avif"
+              src="/workn-go/site-map3.avif"
               alt="Site Map 3"
-              onClick={() => openModal("/workngo-site-map3.avif")}
+              onClick={() => openModal("/workn-go/site-map3.avif")}
             />
             <ClickableImage
-              src="/workngo-site-map4.avif"
+              src="/workn-go/site-map4.avif"
               alt="Site Map 4"
-              onClick={() => openModal("/workngo-site-map4.avif")}
+              onClick={() => openModal("/workn-go/site-map4.avif")}
             />
             <p className="text-xl">
               Este case alinha design centrado no usuário e impacto de negócio,
