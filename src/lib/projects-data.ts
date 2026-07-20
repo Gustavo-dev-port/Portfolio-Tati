@@ -25,7 +25,7 @@ export const projectData = [
     href: "/workn-go",
   },
   {
-    src: "/hub-redacao/capa.png",
+    src: "/hub-redacao/capa.avif",
     alt: "Hub Redação",
     title:
       "Hub centralizado de gestão de redações para professores da rede estadual de São Paulo.",

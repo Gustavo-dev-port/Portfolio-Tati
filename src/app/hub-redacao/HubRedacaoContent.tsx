@@ -31,7 +31,7 @@ export default function HubRedacaoContent() {
       <section className="container mx-auto max-w-6xl px-4 -mt-8">
         <div className="overflow-hidden rounded-lg shadow-2xl aspect-video">
           <Image
-            src="/hub-redacao/capa.png"
+            src="/hub-redacao/capa.avif"
             alt="Professor utilizando o Hub Redação em sala de aula"
             width={1200}
             height={675}
@@ -120,10 +120,10 @@ export default function HubRedacaoContent() {
           </div>
           <div className="mt-8 space-y-8">
             <ClickableImage
-              src="/hub-redacao/desk-research-dashboards.gif"
+              src="/hub-redacao/desk-research-dashboards.avif"
               alt="Desk research sobre boas práticas de dashboards analíticos"
               onClick={() =>
-                openModal("/hub-redacao/desk-research-dashboards.gif")
+                openModal("/hub-redacao/desk-research-dashboards.avif")
               }
             />
             <ClickableImage
@@ -278,9 +278,9 @@ export default function HubRedacaoContent() {
           </div>
           <div className="mt-8 space-y-8">
             <ClickableImage
-              src="/hub-redacao/kanban.webp"
+              src="/hub-redacao/kanban.avif"
               alt="Kanban de status de correção: não iniciadas, rascunhos, em correção, devolvidas e concluídas"
-              onClick={() => openModal("/hub-redacao/kanban.webp")}
+              onClick={() => openModal("/hub-redacao/kanban.avif")}
             />
           </div>
           <div className="prose prose-2xl dark:prose-invert max-w-none mt-8">
