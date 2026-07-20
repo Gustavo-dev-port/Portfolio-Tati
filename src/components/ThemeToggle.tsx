@@ -1,29 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 
 export default function ThemeToggle() {
-  const [dark, setDark] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    // Lê o estado atual do DOM (já definido pelo script inline no layout)
-    setDark(document.documentElement.classList.contains("dark"));
-  }, []);
+  // Evita mismatch de hidratação: o tema resolvido só é conhecido após montar no client
+  useEffect(() => setMounted(true), []);
 
-  function toggle() {
-    const isDark = document.documentElement.classList.toggle("dark");
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-    setDark(isDark);
+  if (!mounted) {
+    return (
+      <button
+        aria-label="Alternar tema"
+        className="text-gray-300 hover:text-white transition-colors p-1 rounded-md"
+      >
+        <Moon className="w-5 h-5" />
+      </button>
+    );
   }
+
+  const isDark = resolvedTheme === "dark";
 
   return (
     <button
-      onClick={toggle}
-      aria-label={dark ? "Ativar modo claro" : "Ativar modo escuro"}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      aria-label={isDark ? "Ativar modo claro" : "Ativar modo escuro"}
       className="text-gray-300 hover:text-white transition-colors p-1 rounded-md"
     >
-      {dark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+      {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
     </button>
   );
 }

@@ -45,6 +45,7 @@ export default function ProjectCarousel() {
                             }
                             width={600}
                             height={400}
+                            sizes="(max-width: 768px) 80vw, (max-width: 1024px) 75vw, 66vw"
                             className="object-cover w-full h-full transition-opacity dark:opacity-90 group-hover:dark:opacity-100"
                           />
                         </div>

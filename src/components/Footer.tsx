@@ -14,6 +14,7 @@ export default function Footer() {
           <Link
             href="https://www.linkedin.com/in/tati-goes"
             target="_blank"
+            rel="noopener noreferrer"
             className="text-gray-400 hover:text-white"
           >
             <Linkedin className="w-5 h-5 inline-block" />

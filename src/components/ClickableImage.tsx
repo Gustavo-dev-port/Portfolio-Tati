@@ -20,6 +20,7 @@ export function ClickableImage({ src, alt, onClick }: ClickableImageProps) {
           alt={alt}
           width={1920}
           height={1080}
+          sizes="(max-width: 896px) 100vw, 896px"
           className="w-full h-full object-cover"
         />
       </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Source_Sans_3 } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import Header from "../components/header";
 import Footer from "@/components/Footer";
@@ -16,6 +17,10 @@ export const metadata: Metadata = {
     "Portfólio de Tatiana Goes, Product Designer em São Paulo. Cases de UX, UI e Design Strategy.",
 };
 
+// Revalida a página ao menos 1x/dia para o ano exibido no rodapé (Footer)
+// não ficar "congelado" no valor calculado no momento do build estático.
+export const revalidate = 86400;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,24 +28,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <head>
-        {/* Evita flash de tema errado antes da hidratação */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var s=localStorage.getItem('theme'),p=window.matchMedia('(prefers-color-scheme: dark)').matches;if(s==='dark'||(s===null&&p))document.documentElement.classList.add('dark');})();`,
-          }}
-        />
-      </head>
       <body
         className={`${sourceSans.variable} font-sans text-[#1b1b1b] dark:text-gray-300`}
       >
-        <header>
-          <Header />
-        </header>
-        <main className="pt-16">{children}</main>
-        <footer>
-          <Footer />
-        </footer>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <header>
+            <Header />
+          </header>
+          <main className="pt-16">{children}</main>
+          <footer>
+            <Footer />
+          </footer>
+        </ThemeProvider>
       </body>
     </html>
   );

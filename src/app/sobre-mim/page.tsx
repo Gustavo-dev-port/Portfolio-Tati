@@ -1,4 +1,5 @@
 // src/app/sobre-mim/page.tsx
+import type { Metadata } from "next";
 import Image from "next/image";
 import {
   Carousel,
@@ -7,6 +8,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+
+export const metadata: Metadata = {
+  title: "Sobre Mim | Tatiana Goes",
+  description:
+    "Conheça Tatiana Goes, Product Designer em São Paulo: trajetória, inspirações e abordagem de design centrado no usuário.",
+};
 
 const catImages = [
   { src: "/gato0.jpg", alt: "Lola" },
@@ -46,6 +53,8 @@ export default function PaginaSobreMim() {
                 alt="Tatiana Goes - Designer"
                 width={800}
                 height={533}
+                sizes="(max-width: 768px) 100vw, 60vw"
+                priority
                 className="w-full h-full object-cover"
               />
             </div>
@@ -96,6 +105,7 @@ export default function PaginaSobreMim() {
                             src={img.src}
                             alt={img.alt}
                             fill
+                            sizes="(max-width: 768px) 80vw, (max-width: 1024px) 33vw, 25vw"
                             className="object-cover"
                           />
                         </div>
