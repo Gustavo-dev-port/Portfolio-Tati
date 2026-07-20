@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Source_Sans_3 } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
@@ -15,6 +15,18 @@ export const metadata: Metadata = {
   title: "Tatiana Goes — Product Designer",
   description:
     "Portfólio de Tatiana Goes, Product Designer em São Paulo. Cases de UX, UI e Design Strategy.",
+};
+
+// Declara explicitamente que o site suporta claro e escuro. Sem isso, alguns
+// navegadores mobile (ex: "escurecer sites automaticamente" no Chrome/Samsung
+// Internet no Android) tentam recolorir a página sozinhos, fazendo o modo
+// claro aparecer com um fundo escuro/azulado divergente do desktop.
+export const viewport: Viewport = {
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#020618" },
+  ],
 };
 
 // Revalida a página ao menos 1x/dia para o ano exibido no rodapé (Footer)
