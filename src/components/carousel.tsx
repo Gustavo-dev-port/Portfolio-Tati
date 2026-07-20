@@ -62,8 +62,8 @@ export default function ProjectCarousel() {
           </Carousel>
         </div>
 
-        {/* Indicador de deslize — visível apenas no mobile */}
-        <p className="mt-4 text-xs text-gray-400 dark:text-gray-500 md:hidden tracking-wide">
+        {/* Alterado de text-xs (12px) para text-sm (14px) e de dark:text-gray-400 para dark:text-gray-300 para ficar mais claro */}
+        <p className="mt-6 text-sm text-gray-500 dark:text-gray-300 md:hidden tracking-wide animate-pulse">
           ← deslize para ver mais →
         </p>
       </div>
