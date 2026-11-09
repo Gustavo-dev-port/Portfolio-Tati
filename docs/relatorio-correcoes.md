@@ -9,7 +9,7 @@
 - O texto alternativo do modal agora é o do botão de origem, não um texto genérico.
 - Dependências foram atualizadas com patches de segurança. `npm audit` passou de 6 vulnerabilidades moderadas para zero.
 - A CSP mantém `'unsafe-inline'` em `script-src`. Testei a remoção no navegador e o site deixou de funcionar. Esse é um **risco residual aceito tecnicamente**, não uma vulnerabilidade eliminada.
-- O build pelo comando padrão do projeto (`npm run build`, Turbopack) **não pôde ser executado neste computador** por uma política do Windows. O build com webpack passou. A CI **não foi executada**.
+- O build pelo comando padrão do projeto (`npm run build`, Turbopack) **não pôde ser executado neste computador** por uma política do Windows. O build com webpack passou. A CI foi executada no PR e no merge: sucesso na reexecução do PR (commit `d67637a`) e no push do `master` (commit `ec1fddb`); a primeira execução do PR falhou por instabilidade externa conhecida (seção 6-E).
 
 ## 1. Build
 
@@ -154,13 +154,27 @@ O commit de correção tem como pai o `origin/master`, preservando o histórico 
 - Nenhum `.env` real, `.vercel/project.json`, `node_modules`, `.next`, `tsbuildinfo` ou captura de navegador entra no commit.
 - Nenhuma credencial foi lida, impressa ou gravada no repositório. A sessão do Vercel CLI local está deslogada.
 
-### 6-E. Situação do deploy na Vercel
+### 6-E. Publicação, CI e deploy (resultados reais)
 
-- Projeto: `portfolio-tati`, no escopo `gustavos-projects-f8c9215e` (identificado pelo status de deploy do GitHub).
-- Cada push em `master` gera um deploy de produção pela integração GitHub da Vercel.
-- Os endereços por deployment (com hash) e o endereço escopado da equipe **redirecionam para o login da Vercel** (proteção SSO), portanto não são públicos.
-- `portfolio-tati.vercel.app` responde com **outro site** ("Portfólio - Tatì Crispim"), que não é deste projeto. **Não foi usado.**
-- Vercel CLI: sem sessão válida (`whoami`: "Logged out"). Não foi possível listar domínios nem definir variáveis de ambiente pela Vercel.
+**Fluxo executado:** push da branch `correcoes-auditoria` (commit `d67637a`, pai `origin/master` `7dc2f6b`) → PR #3 para `master` → CI e preview da Vercel → merge com commit de merge `ec1fddb` (pais `7dc2f6b` e `d67637a`). Sem force push. `master` não tem proteção de branch.
+
+**CI (`.github/workflows/ci.yml`):**
+
+| Execução | Commit | Resultado | Observação |
+|---|---|---|---|
+| `42665841711` (PR #3) | `d67637a` | **Falhou** na etapa `Build` (Turbopack) | Erro `next/font/google queries have exactly one entry` ao processar a fonte Source Sans 3. Causa conhecida e externa: a issue `vercel/next.js#99114` descreve respostas do Google Fonts com URLs de fonte sem extensão, que fazem o build falhar de forma intermitente. A issue relata cerca de 1 em 60 respostas nesse formato. |
+| `42665841711`, reexecução do job com falha | `d67637a` | **Sucesso** em todas as etapas | Lint, tipos, testes, auditoria e build passaram. A reexecução não alterou código. |
+| `42666465559` (push do merge) | `ec1fddb` | **Sucesso** em todas as etapas | Job `build-and-test`, concluído sem erro. |
+
+A falha da primeira execução **não foi escondida**: ela aparece acima. Ela não foi causada pelo código deste PR, mas a intermitência do Google Fonts pode voltar em qualquer build, inclusive na Vercel. Mitigação possível, não aplicada nesta etapa: self-host da fonte com `next/font/local`, o que muda a forma de carregar a fonte e precisa de decisão.
+
+**Vercel:**
+- Preview do PR (`7661703092`, commit `d67637a`): status `success` ("Deployment has completed").
+- Produção (`7661792553`, commit `ec1fddb`): status `success`. Build concluído sem erro.
+- **Acesso público ao conteúdo de produção: não verificado.** Os endereços de deployment (com hash) e o escopado da equipe redirecionam para o login da Vercel (SSO). `portfolio-tati.vercel.app` é outro site. A sessão do Vercel CLI local está deslogada, e o navegador do proprietário não estava logado na Vercel; não fiz login em nome do proprietário.
+- Por isso **não foram verificados** em produção: página inicial, cases, canonical, Open Graph, robots, sitemap, ausência de localhost, imagens, carrossel, modal e console. Esses itens dependem da URL pública ou de acesso autorizado.
+
+**Consequência nos metadados de produção:** `NEXT_PUBLIC_SITE_URL` não está definida. Portanto a produção não gera canonical, imagem social absoluta, sitemap nem a linha `Sitemap` do robots. O sitemap que estava publicado no remoto anterior usava `https://example.com`; essa URL deixa de ser gerada.
 
 ## 7. Achados
 
@@ -227,7 +241,7 @@ O commit de correção tem como pai o `origin/master`, preservando o histórico 
 ### Não executadas ou não verificadas
 
 - **`npm run build` (Turbopack):** bloqueado neste computador pela política do Windows.
-- **CI (`ubuntu-latest`):** não executada.
+- **CI (`ubuntu-latest`):** executada e concluída com sucesso no merge (`ec1fddb`). Não é um build de produção verificado no navegador.
 - **Hospedagem de produção:** não identificada; headers e comportamento lá não foram testados.
 - **Sitemap e metadados com o domínio real:** dependem da variável ainda não definida.
 - **Validação dos números:** depende da Tatiana.
@@ -238,19 +252,18 @@ O commit de correção tem como pai o `origin/master`, preservando o histórico 
 
 ### Pendências externas (não resolvíveis com o acesso disponível)
 
-1. **URL pública de produção.** Não identificada: os endereços por deployment e o da equipe exigem login da Vercel, e `portfolio-tati.vercel.app` é de outro site. **Solicito a URL pública estável** (ou o domínio, se houver) para verificar a produção e configurar `NEXT_PUBLIC_SITE_URL`.
-2. **Variável `NEXT_PUBLIC_SITE_URL` na Vercel.** Não definida: a sessão do Vercel CLI está deslogada e não há credencial autorizada disponível. É preciso defini-la no ambiente **Production** da Vercel (ou autorizar essa configuração), antes da build. Depois de definir, é necessário gerar nova build e republicar: alterar só o painel não atualiza as páginas já geradas.
-3. **Build local com Turbopack.** Bloqueado pela política do Windows sobre `@next/swc-win32-x64-msvc`. A política não foi alterada. A verificação local usa `npx next build` (webpack), que passou.
+1. **URL pública de produção.** Não identificada: os endereços de deployment e o da equipe exigem login da Vercel (SSO), e `portfolio-tati.vercel.app` é de outro site. **Solicito a URL pública estável** (ou o domínio, se houver). Com ela, a verificação de produção pode ser feita: página inicial, cases, canonical, Open Graph, robots, sitemap, imagens, carrossel, modal e console.
+2. **Variável `NEXT_PUBLIC_SITE_URL` na Vercel.** Não definida. A sessão do Vercel CLI está deslogada, e o navegador não está logado na Vercel. É preciso defini-la no ambiente **Production** (ou autorizar essa configuração). Depois, é necessário gerar nova build e republicar: alterar só o painel não atualiza as páginas já geradas.
+3. **Build local com Turbopack.** Bloqueado pela política do Windows sobre `@next/swc-win32-x64-msvc`. A política não foi alterada.
+4. **Decisões do proprietário:** as reversões da seção 6-B, em especial `ThemeToggle` (grupo de botões com `aria-pressed`, sem radiogroup) e os textos alternativos descritivos dos cases.
 
 ### Resolvidas nesta etapa
 
 - **Validação editorial:** declaração do proprietário, sem verificação independente (seção 5).
 - **Repositório e campos de `package.json`:** confirmados (seção 6-B).
 - **Identidade Git:** configurada somente neste repositório (seção 6-C).
-
-### Decisões do proprietário a confirmar
-
-- As reversões listadas na seção 6-B, em especial `ThemeToggle` (grupo de botões com `aria-pressed` em vez de radiogroup) e os textos alternativos descritivos dos cases. Se preferir alguma delas, o histórico permite reaplicar a alteração remota.
+- **CI:** executada no PR e no merge, com sucesso (seção 6-E).
+- **Publicação:** merge em `master` (`ec1fddb`) e deploy de produção com status `success` na Vercel (seção 6-E).
 
 ## 11. Riscos residuais
 
@@ -258,7 +271,9 @@ O commit de correção tem como pai o `origin/master`, preservando o histórico 
 - **Metadados sem domínio:** sem `NEXT_PUBLIC_SITE_URL`, o site não tem canonical nem sitemap.
 - **Fontes dos cases:** a confirmação é do proprietário; não houve verificação independente das fontes e números.
 - **Reversões sobre trabalho remoto:** decisões de integração que podem não corresponder à intenção do proprietário (seção 6-B).
-- **Build pelo caminho padrão:** Turbopack não verificado localmente; a verificação de CI é a única evidência para esse caminho, e só vale depois da execução.
+- **Build pelo caminho padrão:** Turbopack não verificado localmente. A evidência é a CI em Linux, que passou no commit `ec1fddb`, e o build da Vercel, que também passou.
+- **Instabilidade do Google Fonts:** a primeira execução da CI falhou por causa de uma issue conhecida do Next (`vercel/next.js#99114`). Pode voltar em qualquer build.
+- **Produção não verificada no navegador:** o acesso público exige URL pública ou acesso autorizado à Vercel.
 - **Aviso de build com webpack:** o preload da fonte não aparece no HTML gerado por esse bundler (seção 4 e N3).
 
 
