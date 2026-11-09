@@ -11,10 +11,12 @@ type ClickableImageProps = {
 export function ClickableImage({ src, alt, onClick }: ClickableImageProps) {
   return (
     <button
+      type="button"
+      aria-label={`Ampliar imagem: ${alt}`}
       onClick={onClick}
       className="w-full transition-shadow duration-300 ease-in-out hover:shadow-2xl rounded-lg"
     >
-      <div className="overflow-hidden rounded-lg shadow-lg">
+      <span className="block overflow-hidden rounded-lg shadow-lg">
         <Image
           src={src}
           alt={alt}
@@ -23,7 +25,7 @@ export function ClickableImage({ src, alt, onClick }: ClickableImageProps) {
           sizes="(max-width: 896px) 100vw, 896px"
           className="w-full h-full object-cover"
         />
-      </div>
+      </span>
     </button>
   );
 }

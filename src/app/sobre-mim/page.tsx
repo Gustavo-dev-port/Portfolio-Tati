@@ -8,8 +8,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { pageAlternates } from "@/lib/site";
 
 export const metadata: Metadata = {
+  ...pageAlternates("/sobre-mim"),
   title: "Sobre Mim | Tatiana Goes",
   description:
     "Conheça Tatiana Goes, Product Designer em São Paulo: trajetória, inspirações e abordagem de design centrado no usuário.",
@@ -24,7 +26,7 @@ const catImages = [
   { src: "/sobre-mim/gato6.jpg", alt: "Keith" },
   { src: "/sobre-mim/gato7.jpg", alt: "Nina" },
   { src: "/sobre-mim/planta0.jpg", alt: "Hortensia" },
-  { src: "/sobre-mim/planta1.jpg", alt: "Orquidea" },
+  { src: "/sobre-mim/planta1.jpg", alt: "Orquídea" },
   { src: "/sobre-mim/arte0.jpg", alt: "Tim Burton" },
 ];
 
@@ -46,8 +48,6 @@ export default function PaginaSobreMim() {
           {/* Coluna da Imagem */}
           <div className="md:w-3/5 flex justify-center">
             <div className="overflow-hidden rounded-lg shadow-xl">
-              {" "}
-              {/* Adiciona bordas arredondadas e sombra */}
               <Image
                 src="/sobre-mim/foto-principal.avif"
                 alt="Tatiana Goes - Designer"
@@ -152,8 +152,7 @@ export default function PaginaSobreMim() {
               </p>
             </div>
           </div>
-        </div>{" "}
-        {/* [ LINHA FALTANTE ] - Fechamento do container */}
+        </div>
       </section>
     </div>
   );

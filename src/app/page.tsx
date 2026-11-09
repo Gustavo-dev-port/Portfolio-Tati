@@ -1,11 +1,16 @@
 // src/app/page.tsx (ou Home.tsx)
+import type { Metadata } from "next";
 import Image from "next/image";
-import Carousel from "@/components/carousel";
+import ProjectCarousel from "@/components/ProjectCarousel";
+import { pageAlternates } from "@/lib/site";
+
+export const metadata: Metadata = {
+  ...pageAlternates("/"),
+};
 
 export default function Home() {
   return (
-    <main>
-      {/* Correção: bg-white-100 não existe no Tailwind padrão. Alterado para bg-gray-50 */}
+    <div>
       <section className="flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-32 px-4 rounded-b-lg shadow-md transition-colors duration-300">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-center gap-12 max-w-4xl">
           {/* Imagem de Perfil */}
@@ -16,7 +21,7 @@ export default function Home() {
               width={300}
               height={300}
               priority
-              // Adicionado dark:opacity-90 e uma borda sutil no modo escuro para suavizar o brilho da foto
+              // Modo escuro: opacidade reduzida e borda sutil para suavizar o brilho da foto
               className="rounded-full shadow-lg object-cover w-72 h-72 dark:opacity-90 border border-transparent dark:border-gray-700"
             />
           </div>
@@ -41,7 +46,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Carousel />
-    </main>
+      <ProjectCarousel />
+    </div>
   );
 }

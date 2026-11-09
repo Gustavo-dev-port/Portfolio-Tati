@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { pageAlternates } from "@/lib/site";
 import HubRedacaoContent from "./HubRedacaoContent";
 
 export const metadata: Metadata = {
+  ...pageAlternates("/hub-redacao"),
   title: "Hub Redação | Tatiana Goes",
   description:
     "Case de UX/UI: hub centralizado de gestão de redações para professores da rede estadual de São Paulo, reunindo proposta vigente, status de correção e desempenho de turma.",

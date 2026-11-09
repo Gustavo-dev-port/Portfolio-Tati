@@ -1,7 +1,8 @@
 // src/app/hub-redacao/HubRedacaoContent.tsx
 "use client";
 
-import Image from "next/image";
+import ProjectHero from "@/components/ProjectHero";
+import ProjectCover from "@/components/ProjectCover";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import { ProjectImageDialog } from "@/components/ProjectImageDialog";
 import { useImageModal } from "@/hooks/useImageModal";
@@ -13,34 +14,17 @@ export default function HubRedacaoContent() {
   return (
     <article className="bg-white dark:bg-gray-800">
       {/* Seção Hero do Projeto (Título e Subtítulo) */}
-      <section className="bg-white dark:bg-gray-900 py-24 px-4">
-        <div className="container mx-auto max-w-4xl text-left">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-[#1b1b1b] dark:text-white mb-4">
-            Hub centralizado de gestão de redações para professores da rede
-            estadual de São Paulo.
-          </h1>
-          <p className="text-2xl md:text-2xl text-gray-700 dark:text-gray-300">
-            Proposta vigente, status de correção por aluno e desempenho de
-            turma reunidos em uma única tela para agilizar a intervenção
-            pedagógica.
-          </p>
-        </div>
-      </section>
+      <ProjectHero
+        title="Hub centralizado de gestão de redações para professores da rede estadual de São Paulo."
+        subtitle="Proposta vigente, status de correção por aluno e desempenho de turma reunidos em uma única tela para agilizar a intervenção pedagógica."
+      />
 
       {/* Imagem de Capa do Projeto */}
-      <section className="container mx-auto max-w-6xl px-4 -mt-8">
-        <div className="overflow-hidden rounded-lg shadow-2xl aspect-video">
-          <Image
-            src="/hub-redacao/capa.avif"
-            alt="Professor utilizando o Hub Redação em sala de aula"
-            width={1200}
-            height={675}
-            sizes="(max-width: 1152px) 100vw, 1152px"
-            priority
-            className="w-full h-full object-cover object-[50%_30%]"
-          />
-        </div>
-      </section>
+      <ProjectCover
+        src="/hub-redacao/capa.avif"
+        alt="Professor utilizando o Hub Redação em sala de aula"
+        objectPosition="object-[50%_30%]"
+      />
 
       {/* Seção de Contexto */}
       <section className="py-12 px-4 bg-white dark:bg-gray-800">
@@ -67,7 +51,7 @@ export default function HubRedacaoContent() {
             </p>
             <p className="text-xl mt-4">
               A resposta foi desenvolver um ambiente único onde o professor
-              acessa os dados de forma rápida, prática e fluída, conseguindo
+              acessa os dados de forma rápida, prática e fluida, conseguindo
               compreender o estado da turma e tomar as medidas pedagógicas
               necessárias.
             </p>
@@ -91,7 +75,7 @@ export default function HubRedacaoContent() {
             <ClickableImage
               src="/hub-redacao/fases.jpg"
               alt="Fases do projeto: benchmark e desk research, mapeamento de jornada, user research e prototipação hi-fi"
-              onClick={() => openModal("/hub-redacao/fases.jpg")}
+              onClick={() => openModal("/hub-redacao/fases.jpg", "Fases do projeto: benchmark e desk research, mapeamento de jornada, user research e prototipação hi-fi")}
             />
           </div>
           <div className="prose prose-2xl dark:prose-invert max-w-none mt-8">
@@ -106,7 +90,7 @@ export default function HubRedacaoContent() {
             <ClickableImage
               src="/hub-redacao/matriz-csd.jpg"
               alt="Matriz CSD com certezas, suposições e dúvidas mapeadas para o projeto"
-              onClick={() => openModal("/hub-redacao/matriz-csd.jpg")}
+              onClick={() => openModal("/hub-redacao/matriz-csd.jpg", "Matriz CSD com certezas, suposições e dúvidas mapeadas para o projeto")}
             />
           </div>
           <div className="prose prose-2xl dark:prose-invert max-w-none mt-8">
@@ -122,16 +106,12 @@ export default function HubRedacaoContent() {
             <ClickableImage
               src="/hub-redacao/desk-research-dashboards.avif"
               alt="Desk research sobre boas práticas de dashboards analíticos"
-              onClick={() =>
-                openModal("/hub-redacao/desk-research-dashboards.avif")
-              }
+              onClick={() => openModal("/hub-redacao/desk-research-dashboards.avif", "Desk research sobre boas práticas de dashboards analíticos")}
             />
             <ClickableImage
               src="/hub-redacao/desk-research-diretrizes.jpg"
               alt="Diretrizes de arquitetura da informação e padrões de interação definidos a partir da desk research"
-              onClick={() =>
-                openModal("/hub-redacao/desk-research-diretrizes.jpg")
-              }
+              onClick={() => openModal("/hub-redacao/desk-research-diretrizes.jpg", "Diretrizes de arquitetura da informação e padrões de interação definidos a partir da desk research")}
             />
           </div>
           <div className="prose prose-2xl dark:prose-invert max-w-none mt-8">
@@ -150,29 +130,27 @@ export default function HubRedacaoContent() {
             <ClickableImage
               src="/hub-redacao/benchmark-sas-educacao.jpg"
               alt="Benchmark: SAS Educação"
-              onClick={() => openModal("/hub-redacao/benchmark-sas-educacao.jpg")}
+              onClick={() => openModal("/hub-redacao/benchmark-sas-educacao.jpg", "Benchmark: SAS Educação")}
             />
             <ClickableImage
               src="/hub-redacao/benchmark-plurall.jpg"
               alt="Benchmark: Plurall (Somos)"
-              onClick={() => openModal("/hub-redacao/benchmark-plurall.jpg")}
+              onClick={() => openModal("/hub-redacao/benchmark-plurall.jpg", "Benchmark: Plurall (Somos)")}
             />
             <ClickableImage
               src="/hub-redacao/benchmark-ftd-ionica.jpg"
               alt="Benchmark: FTD Iônica"
-              onClick={() => openModal("/hub-redacao/benchmark-ftd-ionica.jpg")}
+              onClick={() => openModal("/hub-redacao/benchmark-ftd-ionica.jpg", "Benchmark: FTD Iônica")}
             />
             <ClickableImage
               src="/hub-redacao/benchmark-google-classroom.jpg"
               alt="Benchmark: Google Classroom"
-              onClick={() =>
-                openModal("/hub-redacao/benchmark-google-classroom.jpg")
-              }
+              onClick={() => openModal("/hub-redacao/benchmark-google-classroom.jpg", "Benchmark: Google Classroom")}
             />
             <ClickableImage
               src="/hub-redacao/benchmark-khan-academy.jpg"
               alt="Benchmark: Khan Academy"
-              onClick={() => openModal("/hub-redacao/benchmark-khan-academy.jpg")}
+              onClick={() => openModal("/hub-redacao/benchmark-khan-academy.jpg", "Benchmark: Khan Academy")}
             />
           </div>
           <div className="prose prose-2xl dark:prose-invert max-w-none mt-8">
@@ -190,12 +168,12 @@ export default function HubRedacaoContent() {
             <ClickableImage
               src="/hub-redacao/jornada-mapeada.jpg"
               alt="Mapeamento da jornada do professor entre discussão em sala, rascunho, envio e correção"
-              onClick={() => openModal("/hub-redacao/jornada-mapeada.jpg")}
+              onClick={() => openModal("/hub-redacao/jornada-mapeada.jpg", "Mapeamento da jornada do professor entre discussão em sala, rascunho, envio e correção")}
             />
             <ClickableImage
               src="/hub-redacao/prototipo-hifi.png"
               alt="Protótipo de alta fidelidade do Hub Redação com status de correção e desempenho por critério"
-              onClick={() => openModal("/hub-redacao/prototipo-hifi.png")}
+              onClick={() => openModal("/hub-redacao/prototipo-hifi.png", "Protótipo de alta fidelidade do Hub Redação com status de correção e desempenho por critério")}
             />
           </div>
         </div>
@@ -217,9 +195,7 @@ export default function HubRedacaoContent() {
             <ClickableImage
               src="/hub-redacao/resultado-hipotese-validada.png"
               alt="Hipótese validada no teste de usabilidade, com depoimentos de professores participantes"
-              onClick={() =>
-                openModal("/hub-redacao/resultado-hipotese-validada.png")
-              }
+              onClick={() => openModal("/hub-redacao/resultado-hipotese-validada.png", "Hipótese validada no teste de usabilidade, com depoimentos de professores participantes")}
             />
           </div>
           <div className="prose prose-2xl dark:prose-invert max-w-none mt-8">
@@ -250,21 +226,17 @@ export default function HubRedacaoContent() {
             <ClickableImage
               src="/hub-redacao/resultado-pesquisa-usabilidade.png"
               alt="Pesquisa de usabilidade: aspectos avaliados aprovados e voz do usuário"
-              onClick={() =>
-                openModal("/hub-redacao/resultado-pesquisa-usabilidade.png")
-              }
+              onClick={() => openModal("/hub-redacao/resultado-pesquisa-usabilidade.png", "Pesquisa de usabilidade: aspectos avaliados aprovados e voz do usuário")}
             />
             <ClickableImage
               src="/hub-redacao/resultado-geracao-valor.png"
               alt="Geração de valor: dados para a prática pedagógica"
-              onClick={() =>
-                openModal("/hub-redacao/resultado-geracao-valor.png")
-              }
+              onClick={() => openModal("/hub-redacao/resultado-geracao-valor.png", "Geração de valor: dados para a prática pedagógica")}
             />
             <ClickableImage
               src="/hub-redacao/resultado-tarefas.png"
               alt="Taxas de sucesso das tarefas de localizar aluno, transcrever redação e acessar rubricas"
-              onClick={() => openModal("/hub-redacao/resultado-tarefas.png")}
+              onClick={() => openModal("/hub-redacao/resultado-tarefas.png", "Taxas de sucesso das tarefas de localizar aluno, transcrever redação e acessar rubricas")}
             />
           </div>
           <div className="prose prose-2xl dark:prose-invert max-w-none mt-8">
@@ -280,7 +252,7 @@ export default function HubRedacaoContent() {
             <ClickableImage
               src="/hub-redacao/kanban.avif"
               alt="Kanban de status de correção: não iniciadas, rascunhos, em correção, devolvidas e concluídas"
-              onClick={() => openModal("/hub-redacao/kanban.avif")}
+              onClick={() => openModal("/hub-redacao/kanban.avif", "Kanban de status de correção: não iniciadas, rascunhos, em correção, devolvidas e concluídas")}
             />
           </div>
           <div className="prose prose-2xl dark:prose-invert max-w-none mt-8">

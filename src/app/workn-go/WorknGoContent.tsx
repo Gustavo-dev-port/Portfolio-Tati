@@ -1,6 +1,7 @@
 "use client";
 
-import Image from "next/image";
+import ProjectHero from "@/components/ProjectHero";
+import ProjectCover from "@/components/ProjectCover";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import { ProjectImageDialog } from "@/components/ProjectImageDialog";
 import { useImageModal } from "@/hooks/useImageModal";
@@ -13,33 +14,17 @@ export default function WorknGoContent() {
   return (
     <article className="bg-white dark:bg-gray-800">
       {/* Seção Hero do Projeto (Título e Subtítulo) */}
-      <section className="bg-white dark:bg-gray-900 py-24 px-4">
-        <div className="container mx-auto max-w-4xl text-left">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-[#1b1b1b] dark:text-white mb-4">
-            Case Work&apos;n Go
-          </h1>
-          <p className="text-2xl md:text-2xl text-gray-700 dark:text-gray-300">
-            UI/UX de plataforma para nômades digitais, com navegação simples
-            para facilitar a busca por acomodações, trabalho e eventos em
-            qualquer lugar do mundo.
-          </p>
-        </div>
-      </section>
+      <ProjectHero
+        title="Case Work'n Go"
+        subtitle="UI/UX de plataforma para nômades digitais, com navegação simples para facilitar a busca por acomodações, trabalho e eventos em qualquer lugar do mundo."
+      />
 
       {/* Imagem de Capa do Projeto */}
-      <section className="container mx-auto max-w-6xl px-4 -mt-8">
-        <div className="overflow-hidden rounded-lg shadow-2xl aspect-video">
-          <Image
-            src="/workn-go/capa.avif"
-            alt="Capa do Projeto Work'n Go"
-            width={1200}
-            height={675} // Proporção 16:9
-            sizes="(max-width: 1152px) 100vw, 1152px"
-            priority
-            className="w-full h-full object-cover object-[50%_62%]"
-          />
-        </div>
-      </section>
+      <ProjectCover
+        src="/workn-go/capa.avif"
+        alt="Capa do Projeto Work'n Go"
+        objectPosition="object-[50%_62%]"
+      />
 
       {/* Seção de Contexto */}
       <section className="py-12 px-4 bg-white dark:bg-gray-800">
@@ -52,8 +37,8 @@ export default function WorknGoContent() {
               Nômades digitais enfrentam dificuldades para encontrar, de forma
               rápida e confiável, acomodações, espaços de trabalho e eventos
               relevantes nos destinos onde estão ou planejam visitar, além do
-              fato de muitas vezes não conhecerem pessoas e a experência se
-              tornar um tanto soitária podendo gerar vulnerabilidade emocional.
+              fato de muitas vezes não conhecerem pessoas e a experiência se
+              tornar um tanto solitária, podendo gerar vulnerabilidade emocional.
               As plataformas existentes geralmente fragmentam essas informações
               ou apresentam experiências pouco adaptadas à mobilidade constante,
               resultando em perda de tempo e oportunidades. A ascensão do
@@ -73,7 +58,7 @@ export default function WorknGoContent() {
             </h2>
             <ul className="list-disc pl-5 text-xl mt-2">
               <li>
-                Estima-se que atualmente existam entre <b> 40 e 60 milhões </b>{" "}
+                Estima-se que atualmente existam entre <b>40 e 60 milhões</b>{" "}
                 de nômades digitais no mundo.
               </li>
               <li>
@@ -85,7 +70,7 @@ export default function WorknGoContent() {
                 conexões digitais para trabalhar remotamente.
               </li>
               <li>
-                Total mundial de nômades: <b> 40 a 60 milhões </b> (2024) → +{" "}
+                Total mundial de nômades: <b>40 a 60 milhões</b> (2024) → +{" "}
                 <b>60 milhões</b> até 2030{" "}
               </li>
               <li>
@@ -95,7 +80,6 @@ export default function WorknGoContent() {
                 dificultando a criação de relações profundas.
               </li>
               <li>
-                {" "}
                 <b>Até 45%</b> dos trabalhadores remotos enfrentam isolamento e
                 falta de conexão social como principais desafios
               </li>
@@ -142,8 +126,8 @@ export default function WorknGoContent() {
             </p>
             <ClickableImage
               src="/workn-go/solucao1.avif"
-              alt="Solucao"
-              onClick={() => openModal("/workn-go/solucao1.avif")}
+              alt="Matriz CSD (certezas, suposições e dúvidas) do case Work'n Go"
+              onClick={() => openModal("/workn-go/solucao1.avif", "Matriz CSD (certezas, suposições e dúvidas) do case Work'n Go")}
             />
             <p className="text-xl mt-4">
               Foram observados os seguintes pontos:
@@ -157,15 +141,15 @@ export default function WorknGoContent() {
                 As pessoas da <b>comunidade</b> se ajudam
               </li>
               <li>
-                Nômades digitais tem problemas com{" "}
+                Nômades digitais têm problemas com{" "}
                 <b>locais adequados para trabalhar</b>.
               </li>
               <li>
-                Nômades digitais tem muitos <b>problemas com internet</b>.
+                Nômades digitais têm muitos <b>problemas com internet</b>.
               </li>
               <li>
-                Vários aplicativos são utlizados como aliados para facilitar a
-                vida como Airbnb, Hostelworld, google tradutor, etc
+                Vários aplicativos são utilizados como aliados para facilitar a
+                vida, como Airbnb, Hostelworld e Google Tradutor, entre outros
               </li>
               <li>
                 As pessoas buscam cidades mais eficientes (com opções de lugares
@@ -175,7 +159,7 @@ export default function WorknGoContent() {
                 O <b>fuso horário</b> é um problema para os profissionais
               </li>
               <li>
-                As pessoas se sentem <b>solitárias</b>, pois não tem amigos e
+                As pessoas se sentem <b>solitárias</b>, pois não têm amigos e
                 família perto.
               </li>
             </ul>
@@ -187,8 +171,8 @@ export default function WorknGoContent() {
             </p>
             <ClickableImage
               src="/workn-go/solucao2.avif"
-              alt="Solucao"
-              onClick={() => openModal("/workn-go/solucao2.avif")}
+              alt="Protopersonas do case Work'n Go"
+              onClick={() => openModal("/workn-go/solucao2.avif", "Protopersonas do case Work'n Go")}
             />
             <p className="text-xl">
               Foi desenvolvido um mapa de empatia para aprofundar o conhecimento
@@ -196,8 +180,8 @@ export default function WorknGoContent() {
             </p>
             <ClickableImage
               src="/workn-go/solucao3.webp"
-              alt="Solucao"
-              onClick={() => openModal("/workn-go/solucao3.webp")}
+              alt="Mapa de empatia do case Work'n Go"
+              onClick={() => openModal("/workn-go/solucao3.webp", "Mapa de empatia do case Work'n Go")}
             />
           </div>
         </div>
@@ -224,11 +208,11 @@ export default function WorknGoContent() {
                 <b>Time zones overview</b>: selecionador de destinos frequentes
                 e idioma local. Facilidade em visualizar diversos fusos horários
                 ao mesmo tempo, buscar as melhores cidades, baseado em
-                avaliações de infrainstrutura, custo de vida, clima, etc...
+                avaliações de infraestrutura, custo de vida, clima, entre outros...
               </li>
               <li>
                 Usuários podem ter em seu perfil fotos e vídeos de lugares que
-                visitaram, afim de compartilhar experiencias específicas de
+                visitaram, a fim de compartilhar experiências específicas de
                 forma menos informal.
               </li>
               <li>
@@ -241,8 +225,8 @@ export default function WorknGoContent() {
             </ul>
             <ClickableImage
               src="/workn-go/site-map1.avif"
-              alt="Site Map 1"
-              onClick={() => openModal("/workn-go/site-map1.avif")}
+              alt="Mapa do site, 1 de 4, do case Work'n Go"
+              onClick={() => openModal("/workn-go/site-map1.avif", "Mapa do site, 1 de 4, do case Work'n Go")}
             />
             <p className="text-xl">
               Foi criado o wireframe para estudar a melhor usabilidade e idear o
@@ -250,18 +234,18 @@ export default function WorknGoContent() {
             </p>
             <ClickableImage
               src="/workn-go/site-map2.avif"
-              alt="Site Map 2"
-              onClick={() => openModal("/workn-go/site-map2.avif")}
+              alt="Mapa do site, 2 de 4, do case Work'n Go"
+              onClick={() => openModal("/workn-go/site-map2.avif", "Mapa do site, 2 de 4, do case Work'n Go")}
             />
             <ClickableImage
               src="/workn-go/site-map3.avif"
-              alt="Site Map 3"
-              onClick={() => openModal("/workn-go/site-map3.avif")}
+              alt="Mapa do site, 3 de 4, do case Work'n Go"
+              onClick={() => openModal("/workn-go/site-map3.avif", "Mapa do site, 3 de 4, do case Work'n Go")}
             />
             <ClickableImage
               src="/workn-go/site-map4.avif"
-              alt="Site Map 4"
-              onClick={() => openModal("/workn-go/site-map4.avif")}
+              alt="Mapa do site, 4 de 4, do case Work'n Go"
+              onClick={() => openModal("/workn-go/site-map4.avif", "Mapa do site, 4 de 4, do case Work'n Go")}
             />
             <p className="text-xl">
               Este case alinha design centrado no usuário e impacto de negócio,
