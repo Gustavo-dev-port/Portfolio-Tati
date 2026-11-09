@@ -1,7 +1,8 @@
 // src/app/auto-servico/AutoServicoContent.tsx
 "use client";
 
-import Image from "next/image";
+import ProjectHero from "@/components/ProjectHero";
+import ProjectCover from "@/components/ProjectCover";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import { ProjectImageDialog } from "@/components/ProjectImageDialog";
 import { useImageModal } from "@/hooks/useImageModal";
@@ -13,32 +14,17 @@ export default function AutoServicoContent() {
   return (
     <article className="bg-white dark:bg-gray-800">
       {/* Seção Hero do Projeto (Título e Subtítulo) */}
-      <section className="bg-white dark:bg-gray-900 py-24 px-4">
-        <div className="container mx-auto max-w-4xl text-left">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-[#1b1b1b] dark:text-white mb-4">
-            Autosserviço em recuperação de conta
-          </h1>
-          <p className="text-2xl md:text-2xl text-gray-700 dark:text-gray-300">
-            Projeto de autoatendimento para recuperação de senha e troca de
-            e-mail cadastrado.
-          </p>
-        </div>
-      </section>
+      <ProjectHero
+        title="Autosserviço em recuperação de conta"
+        subtitle="Projeto de autoatendimento para recuperação de senha e troca de e-mail cadastrado."
+      />
 
       {/* Imagem de Capa do Projeto */}
-      <section className="container mx-auto max-w-6xl px-4 -mt-8">
-        <div className="overflow-hidden rounded-lg shadow-2xl aspect-video">
-          <Image
-            src="/auto-servico/capa.avif"
-            alt="Capa do projeto Autosserviço"
-            width={1200}
-            height={675} // Proporção 16:9
-            sizes="(max-width: 1152px) 100vw, 1152px"
-            priority
-            className="w-full h-full object-cover object-[50%_62%]"
-          />
-        </div>
-      </section>
+      <ProjectCover
+        src="/auto-servico/capa.avif"
+        alt="Capa do projeto Autosserviço"
+        objectPosition="object-[50%_62%]"
+      />
 
       {/* Seção de Contexto */}
       <section className="py-12 px-4 bg-white dark:bg-gray-800">
@@ -90,8 +76,8 @@ export default function AutoServicoContent() {
           <div className="mt-8 space-y-8">
             <ClickableImage
               src="/auto-servico/contexto.avif"
-              alt="Contexto"
-              onClick={() => openModal("/auto-servico/contexto.avif")}
+              alt="Contexto do case Autosserviço em recuperação de conta"
+              onClick={() => openModal("/auto-servico/contexto.avif", "Contexto do case Autosserviço em recuperação de conta")}
             />
           </div>
         </div>
@@ -112,13 +98,13 @@ export default function AutoServicoContent() {
           <div className="mt-8 space-y-8">
             <ClickableImage
               src="/auto-servico/research1.avif"
-              alt="Desk Research"
-              onClick={() => openModal("/auto-servico/research1.avif")}
+              alt="Desk research, 1 de 2, do case Autosserviço em recuperação de conta"
+              onClick={() => openModal("/auto-servico/research1.avif", "Desk research, 1 de 2, do case Autosserviço em recuperação de conta")}
             />
             <ClickableImage
               src="/auto-servico/research2.avif"
-              alt="Desk Research"
-              onClick={() => openModal("/auto-servico/research2.avif")}
+              alt="Desk research, 2 de 2, do case Autosserviço em recuperação de conta"
+              onClick={() => openModal("/auto-servico/research2.avif", "Desk research, 2 de 2, do case Autosserviço em recuperação de conta")}
             />
           </div>
           <div className="prose prose-2xl dark:prose-invert max-w-none mt-8">
@@ -134,7 +120,7 @@ export default function AutoServicoContent() {
               </u>
             </a>
             <p className="text-xl mt-4">
-              Após mapeamos a jornada atual do fluxo de login, desenhamos dois
+              Depois de mapear a jornada atual do fluxo de login, desenhamos dois
               caminhos complementares:
             </p>
             <div className="mt-4">
@@ -153,8 +139,8 @@ export default function AutoServicoContent() {
           <div className="mt-12 space-y-8">
             <ClickableImage
               src="/auto-servico/fluxo.avif"
-              alt="Solucao"
-              onClick={() => openModal("/auto-servico/fluxo.avif")}
+              alt="Fluxo da solução do case Autosserviço em recuperação de conta"
+              onClick={() => openModal("/auto-servico/fluxo.avif", "Fluxo da solução do case Autosserviço em recuperação de conta")}
             />
           </div>
           <div className="prose prose-2xl dark:prose-invert max-w-none mt-8">
@@ -181,13 +167,13 @@ export default function AutoServicoContent() {
           <div className="mt-8">
             <ClickableImage
               src="/auto-servico/prototipo1.avif"
-              alt="Solucao"
-              onClick={() => openModal("/auto-servico/prototipo1.avif")}
+              alt="Protótipo, 1 de 2, da solução do case Autosserviço em recuperação de conta"
+              onClick={() => openModal("/auto-servico/prototipo1.avif", "Protótipo, 1 de 2, da solução do case Autosserviço em recuperação de conta")}
             />
             <ClickableImage
               src="/auto-servico/prototipo2.avif"
-              alt="Solucao"
-              onClick={() => openModal("/auto-servico/prototipo2.avif")}
+              alt="Protótipo, 2 de 2, da solução do case Autosserviço em recuperação de conta"
+              onClick={() => openModal("/auto-servico/prototipo2.avif", "Protótipo, 2 de 2, da solução do case Autosserviço em recuperação de conta")}
             />
           </div>
         </div>

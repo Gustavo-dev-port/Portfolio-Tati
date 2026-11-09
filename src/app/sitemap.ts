@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 import { projectData } from "@/lib/projects-data";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+import { siteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  if (!siteUrl) return [];
+
   const staticRoutes = ["", "/sobre-mim"].map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date(),

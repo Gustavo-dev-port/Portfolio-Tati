@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 
+// 'unsafe-inline' em script-src é necessário: o Next.js injeta scripts inline
+// para hidratação e o next-themes para o tema. Nonces tornariam as páginas
+// dinâmicas e hashes não cobrem esses scripts. Decisão e evidências em
+// docs/seguranca-csp.md.
 const contentSecurityPolicy = [
   "default-src 'self'",
   "img-src 'self' data:",

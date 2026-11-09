@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { pageAlternates } from "@/lib/site";
 import WorknGoContent from "./WorknGoContent";
 
 export const metadata: Metadata = {
+  ...pageAlternates("/workn-go"),
   title: "Case Work'n Go | Tatiana Goes",
   description:
     "Case de UX/UI: plataforma para nômades digitais com navegação simples para acomodações, trabalho e eventos ao redor do mundo.",

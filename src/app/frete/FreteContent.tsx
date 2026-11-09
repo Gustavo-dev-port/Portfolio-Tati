@@ -1,6 +1,7 @@
 "use client";
 
-import Image from "next/image";
+import ProjectHero from "@/components/ProjectHero";
+import ProjectCover from "@/components/ProjectCover";
 import ProjectNavigation from "@/components/ProjectNavigation";
 import { ProjectImageDialog } from "@/components/ProjectImageDialog";
 import { useImageModal } from "@/hooks/useImageModal";
@@ -13,31 +14,17 @@ export default function FreteContent() {
   return (
     <article className="bg-white dark:bg-gray-800">
       {/* Seção Hero do Projeto (Título e Subtítulo) */}
-      <section className="bg-white dark:bg-gray-900 py-24 px-4">
-        <div className="container mx-auto max-w-4xl text-left">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-[#1b1b1b] dark:text-white mb-4">
-            Transformando a experiência no carrinho de compras.
-          </h1>
-          <p className="text-2xl md:text-2xl text-gray-700 dark:text-gray-300">
-            Como o design pode redefinir a satisfação do cliente.
-          </p>
-        </div>
-      </section>
+      <ProjectHero
+        title="Transformando a experiência no carrinho de compras."
+        subtitle="Como o design pode redefinir a satisfação do cliente."
+      />
 
       {/* Imagem de Capa do Projeto */}
-      <section className="container mx-auto max-w-6xl px-4 -mt-8">
-        <div className="overflow-hidden rounded-lg shadow-2xl aspect-video">
-          <Image
-            src="/frete/capa.avif"
-            alt="Capa do Projeto Frete no Carrinho"
-            width={1200}
-            height={675} // Proporção 16:9
-            sizes="(max-width: 1152px) 100vw, 1152px"
-            priority
-            className="w-full h-full object-cover object-[50%_62%]"
-          />
-        </div>
-      </section>
+      <ProjectCover
+        src="/frete/capa.avif"
+        alt="Capa do Projeto Frete no Carrinho"
+        objectPosition="object-[50%_62%]"
+      />
 
       {/* Seção de Contexto */}
       <section className="py-12 px-4 bg-white dark:bg-gray-800">
@@ -62,8 +49,8 @@ export default function FreteContent() {
           <div className="mt-8 space-y-8">
             <ClickableImage
               src="/frete/contexto.avif"
-              alt="Contexto"
-              onClick={() => openModal("/frete/contexto.avif")}
+              alt="Contexto do case Frete no Carrinho"
+              onClick={() => openModal("/frete/contexto.avif", "Contexto do case Frete no Carrinho")}
             />
           </div>
         </div>
@@ -77,7 +64,7 @@ export default function FreteContent() {
               Solução
             </h2>
             <p className="text-xl">
-              A implementação de uma nova feature nesta parte da jornada ,exige
+              A implementação de uma nova feature nesta parte da jornada exige
               uma visão profunda sobre o impacto desta etapa no fluxo de decisão
               do usuário, para isso, mapeamos sua jornada de experiência e
               confirmamos que havia potencial de redução da taxa de abandono de
@@ -87,8 +74,8 @@ export default function FreteContent() {
 
             <ClickableImage
               src="/frete/solucao.avif"
-              alt="Solucao"
-              onClick={() => openModal("/frete/solucao.avif")}
+              alt="Solução, 1 de 8, do case Frete no Carrinho"
+              onClick={() => openModal("/frete/solucao.avif", "Solução, 1 de 8, do case Frete no Carrinho")}
             />
 
             <p className="text-xl">
@@ -125,8 +112,8 @@ export default function FreteContent() {
             </p>
             <ClickableImage
               src="/frete/solucao2.avif"
-              alt="Solucao"
-              onClick={() => openModal("/frete/solucao2.avif")}
+              alt="Solução, 2 de 8, do case Frete no Carrinho"
+              onClick={() => openModal("/frete/solucao2.avif", "Solução, 2 de 8, do case Frete no Carrinho")}
             />
             <p className="text-xl">
               Confirmamos nossa hipótese de que o usuário acredita ser
@@ -135,61 +122,61 @@ export default function FreteContent() {
             </p>
             <ClickableImage
               src="/frete/solucao3.avif"
-              alt="Solucao"
-              onClick={() => openModal("/frete/solucao3.avif")}
+              alt="Solução, 3 de 8, do case Frete no Carrinho"
+              onClick={() => openModal("/frete/solucao3.avif", "Solução, 3 de 8, do case Frete no Carrinho")}
             />
             <p className="text-xl">
               Para medir a encontrabilidade para calcular o frete, solicitamos
               uma tarefa para que o usuário interagisse com o cálculo de frete
-              com intuito de testar a hierarquia de informações.Os resultados
+              com intuito de testar a hierarquia de informações. Os resultados
               foram próximos entre si, reforçando que a encontrabilidade estava
               adequada.
             </p>
             <ClickableImage
               src="/frete/solucao4.avif"
-              alt="Solucao"
-              onClick={() => openModal("/frete/solucao4.avif")}
+              alt="Solução, 4 de 8, do case Frete no Carrinho"
+              onClick={() => openModal("/frete/solucao4.avif", "Solução, 4 de 8, do case Frete no Carrinho")}
             />
             <ClickableImage
               src="/frete/solucao5.avif"
-              alt="Solucao"
-              onClick={() => openModal("/frete/solucao5.avif")}
+              alt="Solução, 5 de 8, do case Frete no Carrinho"
+              onClick={() => openModal("/frete/solucao5.avif", "Solução, 5 de 8, do case Frete no Carrinho")}
             />
             <p className="text-xl">
-              Com intuito de entender qual das opções o usuario tem a perceção
+              Com o intuito de entender qual das opções o usuário tem a percepção
               mais fácil do frete, perguntamos qual das versões seria ideal.
             </p>
             <ClickableImage
               src="/frete/solucao6.avif"
-              alt="Solucao"
-              onClick={() => openModal("/frete/solucao6.avif")}
+              alt="Solução, 6 de 8, do case Frete no Carrinho"
+              onClick={() => openModal("/frete/solucao6.avif", "Solução, 6 de 8, do case Frete no Carrinho")}
             />
 
             <ClickableImage
               src="/frete/solucao7.avif"
-              alt="Solucao"
-              onClick={() => openModal("/frete/solucao7.avif")}
+              alt="Solução, 7 de 8, do case Frete no Carrinho"
+              onClick={() => openModal("/frete/solucao7.avif", "Solução, 7 de 8, do case Frete no Carrinho")}
             />
 
             <ClickableImage
               src="/frete/solucao8.avif"
-              alt="Solucao"
-              onClick={() => openModal("/frete/solucao8.avif")}
+              alt="Solução, 8 de 8, do case Frete no Carrinho"
+              onClick={() => openModal("/frete/solucao8.avif", "Solução, 8 de 8, do case Frete no Carrinho")}
             />
             <ClickableImage
               src="/frete/prototipo1.avif"
-              alt="Solucao"
-              onClick={() => openModal("/frete/prototipo1.avif")}
+              alt="Protótipo, 1 de 3, do case Frete no Carrinho"
+              onClick={() => openModal("/frete/prototipo1.avif", "Protótipo, 1 de 3, do case Frete no Carrinho")}
             />
             <ClickableImage
               src="/frete/prototipo2.avif"
-              alt="Solucao"
-              onClick={() => openModal("/frete/prototipo2.avif")}
+              alt="Protótipo, 2 de 3, do case Frete no Carrinho"
+              onClick={() => openModal("/frete/prototipo2.avif", "Protótipo, 2 de 3, do case Frete no Carrinho")}
             />
             <ClickableImage
               src="/frete/prototipo3.avif"
-              alt="Solucao"
-              onClick={() => openModal("/frete/prototipo3.avif")}
+              alt="Protótipo, 3 de 3, do case Frete no Carrinho"
+              onClick={() => openModal("/frete/prototipo3.avif", "Protótipo, 3 de 3, do case Frete no Carrinho")}
             />
             <p className="text-xl">
               É possível visualizar os protótipos{" "}

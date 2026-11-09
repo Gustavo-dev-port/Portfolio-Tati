@@ -75,17 +75,31 @@ function Carousel({
     api?.scrollNext()
   }, [api])
 
+  // Setas: rolam o carrossel. Se o foco estiver em um slide, ele passa para o
+  // slide vizinho, senão o foco ficaria num elemento cortado pela área visível.
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === "ArrowLeft") {
-        event.preventDefault()
-        scrollPrev()
-      } else if (event.key === "ArrowRight") {
-        event.preventDefault()
-        scrollNext()
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return
+      event.preventDefault()
+      const direction = event.key === "ArrowRight" ? 1 : -1
+
+      const slides = api?.slideNodes() ?? []
+      const target = event.target as HTMLElement
+      const current = slides.findIndex((slide) => slide.contains(target))
+
+      if (!api || current === -1) {
+        if (direction > 0) scrollNext()
+        else scrollPrev()
+        return
       }
+
+      const next = (current + direction + slides.length) % slides.length
+      api.scrollTo(next)
+      slides[next]
+        .querySelector<HTMLElement>('a[href], button, [tabindex]:not([tabindex="-1"])')
+        ?.focus({ preventScroll: true })
     },
-    [scrollPrev, scrollNext]
+    [api, scrollPrev, scrollNext]
   )
 
   React.useEffect(() => {
@@ -196,7 +210,7 @@ function CarouselPrevious({
       {...props}
     >
       <ArrowLeft />
-      <span className="sr-only">Previous slide</span>
+      <span className="sr-only">Slide anterior</span>
     </Button>
   )
 }
@@ -226,7 +240,7 @@ function CarouselNext({
       {...props}
     >
       <ArrowRight />
-      <span className="sr-only">Next slide</span>
+      <span className="sr-only">Próximo slide</span>
     </Button>
   )
 }

@@ -19,7 +19,7 @@ export default function ThemeToggle() {
 
   return (
     <div
-      role="radiogroup"
+      role="group"
       aria-label="Selecionar tema"
       className="flex items-center gap-0.5 rounded-full bg-black/20 p-0.5"
     >
@@ -29,12 +29,11 @@ export default function ThemeToggle() {
           <button
             key={value}
             type="button"
-            role="radio"
-            aria-checked={isActive}
+            aria-pressed={isActive}
             aria-label={label}
             title={label}
             onClick={() => setTheme(value)}
-            className={`p-1.5 rounded-full transition-colors ${
+            className={`p-1.5 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
               isActive
                 ? "bg-white text-gray-900"
                 : "text-gray-300 hover:text-white"

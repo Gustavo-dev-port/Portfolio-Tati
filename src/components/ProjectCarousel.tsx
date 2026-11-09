@@ -15,7 +15,7 @@ export default function ProjectCarousel() {
   return (
     <section className="w-full bg-gray-100 dark:bg-gray-800 py-16 overflow-x-hidden">
       <div className="container mx-auto max-w-4xl text-center px-4">
-        {/* Substituíção do text-white por text-gray-100 para não usar branco puro */}
+        {/* text-gray-100 em vez de branco puro */}
         <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">
           Meus Projetos
         </h2>
